@@ -34,13 +34,10 @@ class Dashboard extends React.Component {
         return(
             <div className="dashboard_container">
                 <div>
-                    <Navbar />
-                </div>
-                <div>
                     <h3 className="welcome_banner">Welcome back, {this.props.user.first_name} </h3>
                     {this.state.children.length === 0 || this.state.children === undefined ? <p>Please start by adding children under the "Children" tab</p> : null}
                     <DashboardNav />
-                    <Footer loggedInStatus={this.props.loggedInStatus} handleLogout={this.props.handleLogout}/>
+                    <Footer  />
                 </div>
             </div>
         )

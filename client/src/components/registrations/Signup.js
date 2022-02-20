@@ -97,7 +97,6 @@ class Signup extends Component {
   render() {
     return (
       <div className='signup_container'>
-        <Navbar />
         <Link id="home" to="/">Back</Link>
         <h3 className="signup_banner">Sign Up</h3>
         <form onSubmit={this.handleSubmit}>
