@@ -69,9 +69,10 @@ class Login extends Component {
     const {username, email, password} = this.state
     return (
         <div className="inner_login_container">
-          <h3 className="login_banner">Log In</h3>
+          <h3 className="login_banner banner">Log In</h3>
           <form onSubmit={this.handleSubmit} className="login_form_container">
-            <label>Username <input
+            <label>Username</label>
+            <input
               className="login_inputs"
               placeholder="username"
               type="text"
@@ -79,8 +80,8 @@ class Login extends Component {
               value={username}
               onChange={this.handleChange}
               required
-            /></label>
-            <label>Email<input
+            /><br/>
+            <label>Email</label><input
               className="login_inputs"
               placeholder="email"
               type="text"
@@ -89,8 +90,8 @@ class Login extends Component {
               onChange={this.handleChange}
               autoComplete='email'
               required
-            /></label>
-            <label>Password<input
+            /><br/>
+            <label>Password</label><input
               className="login_inputs"
               placeholder="password"
               type="password"
@@ -99,19 +100,15 @@ class Login extends Component {
               value={password}
               onChange={this.handleChange}
               required
-            /><br/></label>
-            <label></label><input type="submit" value="Log In" className="login_button"/>
+            />
+            <input type="submit" value="Log In" className="login_button submit"/>
             </form>
-            <p>
-              or
-            </p>
+            <label className="or">or</label><br/>
               <form action='http://localhost:3001/login' className="button_to" data-remote="true" method="get">
-                <input type="submit" value="Log in with Google" />
+                <input type="submit" className="submit" value="Log in with Google" />
               </form>
-            <p>
-              or<br/>
-              <Link className="signup_link" to='/signup'>Sign up</Link>
-            </p>
+            <label className="or">or</label><br/>
+              <input type="submit" value="Sign Up" className="signup_link submit" to='/signup'/>
             <div>
               {
                 this.state.errors ? this.handleErrors() : null

@@ -72,8 +72,49 @@ code {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 5%;
   height: 75%;
   background-color: rgba(255, 228, 196, 0.8)
+}
+
+.inner_login_container{
+  padding: 5%;
+}
+
+form{
+  width: 100%;
+  text-align: left;
+  margin-top: 5%;
+}
+
+input{
+  width: 40%;
+  margin-right: 5%;
+  float: right;
+}
+
+input.submit{
+  float: none;
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+label{
+  width: 40%;
+  text-align: left;
+  margin-left: 5%
+}
+
+label.or{
+  margin: 0;
+}
+
+.banner{
+  padding-top: 4%;
 }
 
 
@@ -106,6 +147,9 @@ div.navbar{
   margin-right: 30%;
 }
 
+input.login_button{
+  margin-top: 8%;
+}
 
 
 
@@ -160,3 +204,4 @@ div.navbar{
   text-align: center;
   border-radius: 5%;
 }
+
