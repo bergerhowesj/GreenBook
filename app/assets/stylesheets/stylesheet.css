@@ -122,3 +122,25 @@ code {
     background-color: rgb(86, 124, 86);
     color: rgba(255, 228, 196, 0.897);
 }
+
+.footer_container{
+    height: 100px;
+    bottom: 0;
+    color:rgba(255, 228, 196, 0.8)
+  }
+  
+.copywrite{
+    width: 40%;
+    float: left;
+    margin-left: 2%;
+    margin-top: 2%;
+  }
+  
+  .acknowledgement{
+    width: 50%;
+    margin-right: 2%;
+    float: right;
+    text-align: right;
+    margin-top: 1%;
+    margin-bottom: 1%;
+  }
