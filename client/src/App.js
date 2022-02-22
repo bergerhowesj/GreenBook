@@ -44,6 +44,7 @@ class App extends Component {
     .then(response => {
       console.log(response)
       if (response.data.logged_in) {
+        console.log(response.data.logged_in)
         this.handleLogin(response.data)
         this.redirect("/")
       } else {
@@ -85,8 +86,8 @@ class App extends Component {
   render() {
     return (
       <div className="app_main">
-        <Navbar loggedInStatus={this.loggedInStatus} handleLogout={this.handleLogout}/>
         <Router>
+        <Navbar loggedInStatus={this.state.isLoggedIn} handleLogout={this.handleLogout}/>
           <Routes>
             <Route
               exact path='/'

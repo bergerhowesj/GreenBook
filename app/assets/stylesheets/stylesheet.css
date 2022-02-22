@@ -121,6 +121,7 @@ code {
     font-weight: bold;
     background-color: rgb(86, 124, 86);
     color: rgba(255, 228, 196, 0.897);
+    border-radius: 5px;
 }
 
 .footer_container{

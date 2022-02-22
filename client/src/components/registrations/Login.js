@@ -104,11 +104,9 @@ class Login extends Component {
             <input type="submit" value="Log In" className="login_button submit"/>
             </form>
             <label className="or">or</label><br/>
-              <form action='http://localhost:3001/login' className="button_to" data-remote="true" method="get">
+              <form action='http://localhost:3001/login' className="signup_link submit" data-remote="true" method="get">
                 <input type="submit" className="submit" value="Log in with Google" />
               </form>
-            <label className="or">or</label><br/>
-              <input type="submit" value="Sign Up" className="signup_link submit" to='/signup'/>
             <div>
               {
                 this.state.errors ? this.handleErrors() : null

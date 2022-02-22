@@ -24,8 +24,10 @@ html{
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgb(86, 124, 86); ;
+  background-color: rgb(86, 124, 86);
   font-size: 20px;
+  color: rgb(86, 124, 86);
+  font-weight: bold;
 
 }
 
@@ -48,6 +50,10 @@ code {
     monospace;
 }
 
+a{
+  text-decoration: none;
+}
+
 .pointer{
   cursor: pointer
 }
@@ -68,12 +74,13 @@ code {
   height: 100%;
 }
 
-.home_container{
+.container{
   width: 80%;
   margin-left: auto;
   margin-right: auto;
   padding-top: 5%;
-  height: 75%;
+  height: 60%;
+  margin-top: 4%;
   background-color: rgba(255, 228, 196, 0.8)
 }
 
@@ -96,7 +103,14 @@ input.submit{
   margin-left: auto;
   margin-right: auto;
   margin-top: 2%;
-  margin-bottom: 2%;
+  margin-bottom: 5%;
+  padding: 1%;
+  width: 35%;
+  font-size: 0.8rem;
+  font-weight: bold;
+  background-color: rgb(86, 124, 86);
+  color: rgba(255, 228, 196, 0.897);
+  border-radius: 5px;
 }
 
 label{
@@ -106,11 +120,12 @@ label{
 }
 
 label.or{
-  margin: 0;
+  margin-left: 0;
 }
 
 .banner{
-  padding-top: 4%;
+  padding-top: 2%;
+  padding-bottom: 6%;
 }
 
 
@@ -120,7 +135,7 @@ label.or{
 
 div.navbar{
   width: 100%;
-  height: 100px;
+  height: 8%;
 }
 
 .login_container{
@@ -145,6 +160,28 @@ input.login_button{
   margin-top: 8%;
 }
 
+.navbar_link{
+  float: left;
+  background-color: rgba(255, 228, 196, 0.8);
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-left: 2%;
+  margin-top: 2%;
+  border: 2px solid rgba(255, 228, 196, 0.5);
+  border-radius: 5px;
+  padding: 0.25%;
+  color: rgb(86, 124, 86);
+}
+
+.navbar_link:hover{
+  background-color:rgba(255, 228, 196, 0.9);
+  color: rgb(86, 124, 86);
+}
+
+
+
 
 
 
@@ -155,25 +192,30 @@ input.login_button{
 
 
 .footer_container{
-  height: 150px;
+  height: 100px;
   bottom: 0;
+  position: absolute;
   color:rgba(255, 228, 196, 0.8)
 }
 
 .copywrite{
   width: 40%;
   float: left;
+  bottom: 0;
   margin-left: 2%;
-  margin-top: 4%;
+  margin-top: 2%;
+  font-weight: normal;
 }
 
 .acknowledgement{
   width: 50%;
   margin-right: 2%;
+  bottom: 0;
   float: right;
   text-align: right;
   margin-top: 1%;
   margin-bottom: 1%;
+  font-weight: normal;
 }
 
 
@@ -190,15 +232,16 @@ input.login_button{
   margin: auto;
   text-align: center;
 }
+
 .inner_login_container{
   width: 30%;
-  height: 60%;
+  height: 50%;
   position: relative;
   margin-left: auto;
   margin-right: auto;
   background-color: rgba(255, 228, 196, 0.8);
   text-align: center;
-  border-radius: 5%;
-  padding: 5%;
+  border-radius: 5px;
+  padding: 2% 3% 9% 3%;
 }
 
