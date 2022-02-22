@@ -26,6 +26,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      backButton: false,
       errors: [],
       isLoggedIn: false,
       user: {},
@@ -56,7 +57,8 @@ class App extends Component {
   handleLogin = (data) => {
     this.setState({
       isLoggedIn: true,
-      user: data.user
+      user: data.user,
+      navbar: "loggedIn"
     })
   }
 
@@ -83,11 +85,17 @@ class App extends Component {
     HISTORY.push(string)
   }
 
+  addBackButton = () =>{
+    this.setState({
+      backButton: true
+    })
+  }
+
   render() {
     return (
       <div className="app_main">
         <Router>
-        <Navbar loggedInStatus={this.state.isLoggedIn} handleLogout={this.handleLogout}/>
+        <Navbar navbarController={this.navbarController} loggedInStatus={this.state.isLoggedIn} handleLogout={this.handleLogout} addBackButton={this.addBackButton} backButton={this.state.backButton}/>
           <Routes>
             <Route
               exact path='/'

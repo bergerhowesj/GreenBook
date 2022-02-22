@@ -68,7 +68,7 @@ class Login extends Component {
   render() {
     const {username, email, password} = this.state
     return (
-        <div className="inner_login_container">
+        <div className="inner_container">
           <h3 className="login_banner banner">Log In</h3>
           <form onSubmit={this.handleSubmit} className="login_form_container">
             <label>Username</label>
