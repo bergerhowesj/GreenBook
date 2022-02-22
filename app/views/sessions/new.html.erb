@@ -1,10 +1,10 @@
+<div class="navbar">
+    <%= link_to 'Back', :back, class: 'google_links' %>
+    <h2 class='logo'>GreenBook</h2>
+</div>
 <div class="home_container">
-    
-    <div class="google_container">
-        <div class="navbar">
-            <h2 class='logo'>GreenBook</h2>
-        </div>
-        <%= link_to 'Back', :back, class: 'google_links' %>
+    <div class="inner_login_container">
+        
         <%= button_to 'Sign in via Google', '/auth/google_oauth2', class: 'google' %>
     </div>
 </div>

@@ -77,10 +77,6 @@ code {
   background-color: rgba(255, 228, 196, 0.8)
 }
 
-.inner_login_container{
-  padding: 5%;
-}
-
 form{
   width: 100%;
   text-align: left;
@@ -116,8 +112,6 @@ label.or{
 .banner{
   padding-top: 4%;
 }
-
-
 
 
 /*++++++++++++++++++ NAVBAR ++++++++++++++++++++*/
@@ -161,7 +155,7 @@ input.login_button{
 
 
 .footer_container{
-  position: fixed;
+  height: 150px;
   bottom: 0;
   color:rgba(255, 228, 196, 0.8)
 }
@@ -170,6 +164,7 @@ input.login_button{
   width: 40%;
   float: left;
   margin-left: 2%;
+  margin-top: 4%;
 }
 
 .acknowledgement{
@@ -177,7 +172,8 @@ input.login_button{
   margin-right: 2%;
   float: right;
   text-align: right;
-  margin-bottom: 1.5%;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 
 
@@ -203,5 +199,6 @@ input.login_button{
   background-color: rgba(255, 228, 196, 0.8);
   text-align: center;
   border-radius: 5%;
+  padding: 5%;
 }
 
