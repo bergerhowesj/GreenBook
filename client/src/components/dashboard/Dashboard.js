@@ -36,7 +36,7 @@ class Dashboard extends React.Component {
                 <div>
                     <h3 className="banner">Welcome back, {this.props.user.first_name} </h3>
                     {this.state.children.length === 0 || this.state.children === undefined ? <p>Please start by adding children under the "Children" tab</p> : null}
-                    <DashboardNav />
+                    <DashboardNav addChildButton={this.props.addChildButton}/>
                 </div>
             </div>
         )

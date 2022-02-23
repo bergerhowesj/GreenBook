@@ -27,6 +27,7 @@ class App extends Component {
     super(props);
     this.state = {
       backButton: false,
+      childButton: false,
       errors: [],
       isLoggedIn: false,
       user: {},
@@ -89,16 +90,20 @@ class App extends Component {
     this.state.backButton ? this.setState({backButton: false}) : this.setState({backButton: true})
   }
 
+  addChildButton = () =>{
+    this.state.childButton ? this.setState({childButton: false}) : this.setState({childButton: true})
+  }
+
   render() {
     return (
       <div className="app_main">
         <Router>
-        <Navbar navbarController={this.navbarController} loggedInStatus={this.state.isLoggedIn} handleLogout={this.handleLogout} addBackButton={this.addBackButton} backButton={this.state.backButton}/>
+        <Navbar navbarController={this.navbarController} loggedInStatus={this.state.isLoggedIn} handleLogout={this.handleLogout} addBackButton={this.addBackButton} backButton={this.state.backButton} addChildButton={this.addChildButton} childButton={this.state.childButton}/>
           <Routes>
             <Route
               exact path='/'
               element={
-              <Home loggedInStatus = {this.state.isLoggedIn} user={this.state.user} children = {this.state.user.children} handleLogout={this.handleLogout} handleLogin={this.handleLogin}/>
+              <Home addChildButton={this.addChildButton} loggedInStatus = {this.state.isLoggedIn} user={this.state.user} children = {this.state.user.children} handleLogout={this.handleLogout} handleLogin={this.handleLogin}/>
               }
             />
             <Route
@@ -116,7 +121,7 @@ class App extends Component {
             <Route
               exact path='/children'
               element={
-              <Children user={this.state.user} children={this.state.children}/>
+              <Children user={this.state.user} children={this.state.children} />
             }
             />
             <Route
