@@ -184,8 +184,6 @@ input.login_button{
 
 
 
-
-
 /*++++++++++++++++++ FOOTER ++++++++++++++++++++*/
 
 
@@ -193,7 +191,7 @@ input.login_button{
 
 .footer_container{
   height: 100px;
-  bottom: 0;
+  bottom: 2%;
   position: absolute;
   color:rgba(255, 228, 196, 0.8)
 }
@@ -237,6 +235,7 @@ input.login_button{
   width: 30%;
   height: 50%;
   position: relative;
+  overflow: scroll;
   margin-left: auto;
   margin-right: auto;
   background-color: rgba(255, 228, 196, 0.8);
@@ -245,3 +244,22 @@ input.login_button{
   padding: 2% 3% 9% 3%;
 }
 
+
+/*++++++++++++++++++ DASHBOARD ++++++++++++++++++++*/
+
+.dashboard_nav{
+  margin-top: 5%;
+  height: 80%;
+}
+
+.links{
+  background-color: rgb(86, 124, 86);;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 50%;
+  border: 2px solid rgb(86, 124, 86);;
+  border-radius: 5px;
+  padding: 0.25%;
+  color: rgba(255, 228, 196, 0.8);
+}
