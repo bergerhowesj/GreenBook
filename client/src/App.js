@@ -86,9 +86,7 @@ class App extends Component {
   }
 
   addBackButton = () =>{
-    this.setState({
-      backButton: true
-    })
+    this.state.backButton ? this.setState({backButton: false}) : this.setState({backButton: true})
   }
 
   render() {
