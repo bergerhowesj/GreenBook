@@ -159,13 +159,15 @@ class Appointments extends Component{
                         <option value="Children">Children Last Name</option>
                     </select></label>
                     </form >
-                    <div className="appointments_form">
-                        {this.state.sortBy === "Children" ?
-                            <AppointmentsByChild children={this.state.children} handleAppointmentSubmit={this.handleAppointmentSubmit} handleAppointmentEdit={this.handleAppointmentEdit}/>
-                            :
-                            <AppointmentsByAppointment children={this.state.children} appointments={this.state.appointments} handleAppointmentSubmit={this.handleAppointmentSubmit} handleAppointmentEdit={this.handleAppointmentEdit}/>
-                        }
-                    </div>
+                    {!this.state.children.length > 0 ? <p><br/>There are no appointments to display<br/>Please begin by adding a child and birth records</p> :
+                        <div className="appointments_form">
+                            {this.state.sortBy === "Children" ?
+                                <AppointmentsByChild children={this.state.children} handleAppointmentSubmit={this.handleAppointmentSubmit} handleAppointmentEdit={this.handleAppointmentEdit}/>
+                                :
+                                <AppointmentsByAppointment children={this.state.children} appointments={this.state.appointments} handleAppointmentSubmit={this.handleAppointmentSubmit} handleAppointmentEdit={this.handleAppointmentEdit}/>
+                            }
+                        </div>
+                    }
                     <div>
                         {
                             this.state.errors ? this.handleErrors() : null

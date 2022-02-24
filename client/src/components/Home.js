@@ -11,6 +11,7 @@ class Home extends React.Component{
           addChildButton={this.props.addChildButton} 
           addBackButton={this.props.addBackButton} 
           addAppointmentButton={this.props.addAppointmentButton}
+          addGrowthButton={this.props.addGrowthButton}
           loggedInStatus={this.props.loggedInStatus} 
           user={this.props.user} 
           children={this.props.children} 

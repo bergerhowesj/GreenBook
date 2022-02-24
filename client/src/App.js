@@ -29,7 +29,8 @@ class App extends Component {
       buttons: {
         backButton: false,
         childButton: false,
-        appointmentButton: false
+        appointmentButton: false,
+        growthButton: false
       },
       errors: [],
       isLoggedIn: false,
@@ -101,6 +102,10 @@ class App extends Component {
     this.state.buttons.appointmentButton ? this.setState({buttons:{...this.state.buttons, appointmentButton: false}}) : this.setState({buttons: {...this.state.buttons, backButton: true, appointmentButton: true}})
   }
 
+  addGrowthButton = () =>{
+    this.state.buttons.growthButton ? this.setState({buttons:{...this.state.buttons, growthButton: false}}) : this.setState({buttons: {...this.state.buttons, backButton: true, growthButton: true}})
+  }
+
   render() {
     return (
       <div className="app_main">
@@ -113,6 +118,8 @@ class App extends Component {
           addChildButton={this.addChildButton} 
           childButton={this.state.buttons.childButton}
           appointmentButton = {this.state.buttons.appointmentButton}
+          growthButton = {this.state.buttons.growthButton}
+          addGrowthButton={this.addGrowthButton}
           addAppointmentButton = {this.addAppointmentButton}
         />
           <Routes>
@@ -123,6 +130,7 @@ class App extends Component {
                 addChildButton={this.addChildButton} 
                 addBackButton={this.addBackButton} 
                 addAppointmentButton={this.addAppointmentButton}
+                addGrowthButton={this.addGrowthButton}
                 loggedInStatus = {this.state.isLoggedIn} 
                 user={this.state.user} 
                 children = {this.state.user.children} 

@@ -258,16 +258,16 @@ class GrowthAndHealthRecords extends React.Component{
 
     render(){
         return(
-            <div className="records_container">
-                <Navbar />
-                <Link className="records_links" to='/'>Back to Dashboard</Link>
+            <div className="container">
                 <div>
                     {
                         this.state.errors ? this.handleErrors() : null
                     }
                 </div>
-                <h3 className="records_banner">Records</h3>
-                {this.state.children.map(child =>{
+                <div className="inner_container">
+                <h3 className="banner">Records</h3>
+                {!this.state.children.length > 0 ? <p>There are no records to display<br/>Please begin by adding a child and birth records</p> :
+                this.state.children.map(child =>{
                     const immunisations = child.immunisations
                     const visits = child.visits
                     const vitaminK = child.vitamin_ks
@@ -348,7 +348,8 @@ class GrowthAndHealthRecords extends React.Component{
                         </div>
                     )
     }})}
-                <Footer />
+            </div>
+
             </div>
         )
     }
