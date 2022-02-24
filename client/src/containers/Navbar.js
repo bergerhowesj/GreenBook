@@ -8,27 +8,14 @@ class Navbar extends React.Component {
     const loggedIn = this.props.loggedInStatus
     const backButton = this.props.backButton
     const childButton = this.props.childButton
+    const appointmentButton = this.props.appointmentButton
 
     return (
       <div className="navbar">
-        {loggedIn
-        ?
-          backButton ?
-            <div>
-              <Link to="/" onClick={this.props.handleLogout} className="navbar_link">Log out</Link>
-              <Link to="/" className="navbar_link" onClick={this.props.addBackButton} onClick={this.props.addChildButton}>Home</Link>
-            </div>
-          :
-            <Link to="/" onClick={this.props.handleLogout} className="navbar_link">Log out</Link>
-        :
-          backButton ?
-            <div>
-              <Link to="/" className="navbar_link" onClick={this.props.addBackButton} onClick={this.props.addChildButton}>Home</Link>
-            </div>
-          :
-            <Link to="/signup" onClick={this.props.addBackButton} className="navbar_link">Sign Up</Link>
-        }
-        {childButton ? <Link className="navbar_link" to='/add_a_child' onClick={this.props.addChildButton} onClick={this.props.addBackButton}>Add a new child</Link> : null}
+        {loggedIn ? <Link to="/" onClick={this.props.handleLogout} className="navbar_link">Log out</Link> : <Link to="/signup" onClick={this.props.addBackButton} className="navbar_link">Sign Up</Link>}
+        {backButton ? <Link to="/" className="navbar_link" onClick={this.props.addBackButton}>Home</Link> : null}
+        {childButton ? <Link className="navbar_link" to='/add_a_child' onClick={this.props.addChildButton}>Add a new child</Link> : null}
+        {appointmentButton ? <Link className="navbar_link" to='/add_an_appointment' onClick={this.props.addAppointmentButton}>Add a new appointment</Link> : null}
         <h2 className='logo'>GreenBook</h2>
       </div>
     )

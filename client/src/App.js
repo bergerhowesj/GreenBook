@@ -26,8 +26,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      backButton: false,
-      childButton: false,
+      buttons: {
+        backButton: false,
+        childButton: false,
+        appointmentButton: false
+      },
       errors: [],
       isLoggedIn: false,
       user: {},
@@ -87,23 +90,45 @@ class App extends Component {
   }
 
   addBackButton = () =>{
-    this.state.backButton ? this.setState({backButton: false}) : this.setState({backButton: true})
+    this.state.buttons.backButton ? this.setState({buttons:{backButton: false}}) : this.setState({buttons: {...this.state.buttons, backButton: true}})
   }
 
   addChildButton = () =>{
-    this.state.childButton ? this.setState({childButton: false}) : this.setState({childButton: true})
+    this.state.buttons.childButton ? this.setState({buttons:{...this.state.buttons, childButton: false}}) : this.setState({buttons: {...this.state.buttons, backButton: true, childButton: true}})
+  }
+
+  addAppointmentButton = () =>{
+    this.state.buttons.appointmentButton ? this.setState({buttons:{...this.state.buttons, appointmentButton: false}}) : this.setState({buttons: {...this.state.buttons, backButton: true, appointmentButton: true}})
   }
 
   render() {
     return (
       <div className="app_main">
         <Router>
-        <Navbar navbarController={this.navbarController} loggedInStatus={this.state.isLoggedIn} handleLogout={this.handleLogout} addBackButton={this.addBackButton} backButton={this.state.backButton} addChildButton={this.addChildButton} childButton={this.state.childButton}/>
+        <Navbar 
+          loggedInStatus={this.state.isLoggedIn} 
+          handleLogout={this.handleLogout} 
+          addBackButton={this.addBackButton} 
+          backButton={this.state.buttons.backButton} 
+          addChildButton={this.addChildButton} 
+          childButton={this.state.buttons.childButton}
+          appointmentButton = {this.state.buttons.appointmentButton}
+          addAppointmentButton = {this.addAppointmentButton}
+        />
           <Routes>
             <Route
               exact path='/'
               element={
-              <Home addChildButton={this.addChildButton} loggedInStatus = {this.state.isLoggedIn} user={this.state.user} children = {this.state.user.children} handleLogout={this.handleLogout} handleLogin={this.handleLogin}/>
+              <Home 
+                addChildButton={this.addChildButton} 
+                addBackButton={this.addBackButton} 
+                addAppointmentButton={this.addAppointmentButton}
+                loggedInStatus = {this.state.isLoggedIn} 
+                user={this.state.user} 
+                children = {this.state.user.children} 
+                handleLogout={this.handleLogout} 
+                handleLogin={this.handleLogin}
+              />
               }
             />
             <Route

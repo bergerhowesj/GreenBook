@@ -1,8 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import DashboardNav from './DashboardNav'
-import Navbar from '../../containers/Navbar'
-import Footer from '../../containers/Footer'
+
 
 class Dashboard extends React.Component {
     constructor(props){
@@ -36,7 +35,11 @@ class Dashboard extends React.Component {
                 <div>
                     <h3 className="banner">Welcome back, {this.props.user.first_name} </h3>
                     {this.state.children.length === 0 || this.state.children === undefined ? <p>Please start by adding children under the "Children" tab</p> : null}
-                    <DashboardNav addChildButton={this.props.addChildButton}/>
+                    <DashboardNav 
+                        addChildButton={this.props.addChildButton} 
+                        addBackButton={this.props.addBackButton}
+                        addAppointmentButton={this.props.addAppointmentButton}
+                    />
                 </div>
             </div>
         )

@@ -150,30 +150,28 @@ class Appointments extends Component{
 
     render(){
         return(
-            <div className="appointments_container">
-                <Navbar />
-                <Link className="appointment_links" to='/'>Back to Dashboard</Link>
-                <Link className="appointment_links" to='/add_an_appointment'>Add a new appointment</Link>
-                <h3 className="appointment_banner">Important Appointments</h3>
-                <form >
-                <label>Sort By: <select className="appointment_inputs" name="sortBy" onChange={this.handleSort}>
-                    <option value="Appointment">Appointment Date and Time</option>
-                    <option value="Children">Children Last Name</option>
-                </select></label>
-                </form >
-                <div className="appointments_form">
-                    {this.state.sortBy === "Children" ?
-                        <AppointmentsByChild children={this.state.children} handleAppointmentSubmit={this.handleAppointmentSubmit} handleAppointmentEdit={this.handleAppointmentEdit}/>
-                        :
-                        <AppointmentsByAppointment children={this.state.children} appointments={this.state.appointments} handleAppointmentSubmit={this.handleAppointmentSubmit} handleAppointmentEdit={this.handleAppointmentEdit}/>
-                    }
+            <div className="container">
+                <div className="inner_container">
+                    <h3 className="banner">Important Appointments</h3>
+                    <form >
+                    <label>Sort By: <select className="appointment_inputs" name="sortBy" onChange={this.handleSort}>
+                        <option value="Appointment">Appointment Date and Time</option>
+                        <option value="Children">Children Last Name</option>
+                    </select></label>
+                    </form >
+                    <div className="appointments_form">
+                        {this.state.sortBy === "Children" ?
+                            <AppointmentsByChild children={this.state.children} handleAppointmentSubmit={this.handleAppointmentSubmit} handleAppointmentEdit={this.handleAppointmentEdit}/>
+                            :
+                            <AppointmentsByAppointment children={this.state.children} appointments={this.state.appointments} handleAppointmentSubmit={this.handleAppointmentSubmit} handleAppointmentEdit={this.handleAppointmentEdit}/>
+                        }
+                    </div>
+                    <div>
+                        {
+                            this.state.errors ? this.handleErrors() : null
+                        }
+                    </div>
                 </div>
-                <div>
-                    {
-                        this.state.errors ? this.handleErrors() : null
-                    }
-                </div>
-                < Footer />
             </div>
         )
     }
