@@ -1,10 +1,8 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import AppointmentsByAppointment from './AppointmentsByAppointment'
 import AppointmentsByChild from './AppointmentsByChild'
-import Navbar from '../../containers/Navbar'
-import Footer from '../../containers/Footer'
+
 
 class Appointments extends Component{
     constructor(props){
@@ -28,7 +26,8 @@ class Appointments extends Component{
                 visit_age: "",
                 child_id: 0
             },
-            appt:{}
+            appt: {},
+            editAppointment: false
         }
     }
 
@@ -117,26 +116,6 @@ class Appointments extends Component{
             .catch( error => console.log('api errors: ', error))
         }
 
-    handleAppointmentEdit = (event) => {
-        const id = event.target.id.split("-")[0]
-        const inputs = document.getElementsByClassName(id)
-        const button = document.getElementById(event.target.id)
-        const breaks = document.getElementsByClassName("appointment_breaks")
-        if(button.innerHTML !== "Close Editing"){
-            for(let i = inputs.length-1; i >= 0; i--){
-                inputs[i].style.display = "block"
-                breaks[i].classList.add("hidden")
-            }
-            button.innerHTML = "Close Editing"
-        } else {
-            for(let i = inputs.length-1; i >= 0; i--){
-                inputs[i].style.display = "none"
-                breaks[i].style.display = "content"
-            }
-            button.innerHTML = "Edit Appointment"
-        }
-    }
-
     handleErrors = () =>{
         return (
             <div>
@@ -148,23 +127,29 @@ class Appointments extends Component{
         )
     }
 
+    
+
     render(){
         return(
             <div className="container">
                 <div className="inner_container">
                     <h3 className="banner">Important Appointments</h3>
                     <form >
-                    <label>Sort By: <select className="appointment_inputs" name="sortBy" onChange={this.handleSort}>
-                        <option value="Appointment">Appointment Date and Time</option>
-                        <option value="Children">Children Last Name</option>
-                    </select></label>
+                    <label>Sort By: 
+                        <select className="appointment_inputs" name="sortBy" onChange={this.handleSort}>
+                            <option value="Appointment">Appointment Date and Time</option>
+                            <option value="Children">Children Last Name</option>
+                        </select>
+                    </label>
                     </form >
                     {!this.state.children.length > 0 ? <p><br/>There are no appointments to display<br/>Please begin by adding a child and birth records</p> :
                         <div className="appointments_form">
-                            {this.state.sortBy === "Children" ?
-                                <AppointmentsByChild children={this.state.children} handleAppointmentSubmit={this.handleAppointmentSubmit} handleAppointmentEdit={this.handleAppointmentEdit}/>
+                            {
+                                this.state.sortBy === "Children" 
+                                ?
+                                    <AppointmentsByChild children={this.state.children} handleAppointmentSubmit={this.handleAppointmentSubmit} handleEditAppointment={this.handleEditAppointment} editAppointment={this.state.editAppointment}/>
                                 :
-                                <AppointmentsByAppointment children={this.state.children} appointments={this.state.appointments} handleAppointmentSubmit={this.handleAppointmentSubmit} handleAppointmentEdit={this.handleAppointmentEdit}/>
+                                    <AppointmentsByAppointment children={this.state.children} appointments={this.state.appointments} handleAppointmentSubmit={this.handleAppointmentSubmit} handleEditAppointment={this.handleEditAppointment} editAppointment={this.state.editAppointment}/>
                             }
                         </div>
                     }

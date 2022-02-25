@@ -313,3 +313,18 @@ li{
 li.list_titles{
   margin-bottom: 5%;
 }
+
+/*++++++++++++++++++ Appointments ++++++++++++++++++++*/
+
+.appointment_info{
+  margin-top: 5%;
+  text-align: left;
+}
+
+.underline{
+  text-decoration: underline;
+}
+
+.child_names{
+  margin-top: 5%;
+}
