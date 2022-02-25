@@ -9,7 +9,7 @@ class DashboardNav extends React.Component {
                 <Link onClick={this.props.addChildButton} className="links" to='/children'>Children</Link><br/><br/>
                 <Link onClick={this.props.addAppointmentButton} className="links" to='/appointments_to_keep'>Appointments To Keep</Link><br/><br/>
                 <Link onClick={this.props.addGrowthButton} className="links" to='/records'>Growth and Health Records</Link><br/><br/>
-                <Link className="links" to='/useful_information'>Useful Information</Link><br/><br/>
+                <Link onClick={this.props.addBackButton} className="links" to='/useful_information'>Useful Information</Link><br/><br/>
             </div>
         )
     }

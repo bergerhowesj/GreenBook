@@ -106,6 +106,10 @@ class App extends Component {
     this.state.buttons.growthButton ? this.setState({buttons:{...this.state.buttons, growthButton: false}}) : this.setState({buttons: {...this.state.buttons, backButton: true, growthButton: true}})
   }
 
+  addUsefulInformationButton = () =>{
+    this.state.buttons.usefulInformationButton ? this.setState({buttons:{...this.state.buttons, usefulInformationButton: false}}) : this.setState({buttons: {...this.state.buttons, backButton: true, usefulInformationButton: true}})
+  }
+
   render() {
     return (
       <div className="app_main">
@@ -218,10 +222,11 @@ class App extends Component {
               }
             />
             <Route
-              exact path='/useful_information/*'
+              exact path='/useful_information'
               element={
               <UsefulInformation />
-              }/>
+              }
+            />
           </Routes>
         </Router>
         < Footer />

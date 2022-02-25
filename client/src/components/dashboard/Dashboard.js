@@ -40,6 +40,7 @@ class Dashboard extends React.Component {
                         addBackButton={this.props.addBackButton}
                         addAppointmentButton={this.props.addAppointmentButton}
                         addGrowthButton={this.props.addGrowthButton}
+                        addUsefulInformationButton={this.props.addUsefulInformationButton}
                     />
                 </div>
             </div>

@@ -52,6 +52,22 @@ code {
 
 a{
   text-decoration: none;
+  color: rgb(86, 124, 86);
+}
+
+a:visited{
+  text-decoration: none;
+  color: rgb(86, 124, 86);
+}
+
+a.links{
+  text-decoration: none;
+  color: rgba(255, 228, 196, 0.8);
+}
+
+a.links:visited{
+  text-decoration: none;
+  color: rgba(255, 228, 196, 0.8);
 }
 
 .pointer{
@@ -126,6 +142,12 @@ label.or{
 .banner{
   padding-top: 2%;
   padding-bottom: 6%;
+}
+
+button{
+  background-color: rgb(86, 124, 86);
+  color: rgba(255, 228, 196, 0.897);
+  border-radius: 5px;
 }
 
 
@@ -268,3 +290,26 @@ input.login_button{
 
 /*++++++++++++++++++ Children ++++++++++++++++++++*/
 
+
+/*++++++++++++++++++ UsefulInformation ++++++++++++++++++++*/
+
+.info_container{
+  margin-top: 20%;
+}
+
+.info_individual_containers{
+  margin-top: 5%;
+}
+
+.info_containers{
+  margin-top: 5%;
+}
+
+li{
+  text-decoration: none;
+  list-style: none;
+}
+
+li.list_titles{
+  margin-bottom: 5%;
+}
