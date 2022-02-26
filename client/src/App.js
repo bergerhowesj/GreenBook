@@ -212,7 +212,7 @@ class App extends Component {
             <Route
               exact path='/add_an_appointment'
               element={
-              <AppointmentsForm />
+              <AppointmentsForm addAppointmentButton={this.addAppointmentButton}/>
               }
             />
             <Route

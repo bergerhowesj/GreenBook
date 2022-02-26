@@ -8,6 +8,7 @@ class AppointmentsForm extends Component{
         this.state = {
             children: [],
             errors: [],
+            notes: [],
             options: ["Choose a reason", "MCHS Visit", "GP", "Paediatrician", "Dentist", "Other"],
             appointment: {
                 id: this.props.appointment ? this.props.appointment.id : null,
@@ -87,15 +88,19 @@ class AppointmentsForm extends Component{
             location_state: location_state,
             location_country: location_country,
             location_contact_number: location_contact_number,
-            visit_age: visit_age,
+            visit_age: reason === "MCHS Visit" ? visit_age : null,
             child_id: child_id
         }
         this.props.editing ?
-            axios.put(`/api/v1/appointments/${id}`, {appointment}, {withCredentials:true})
+            axios.put(`http://localhost:3001/api/v1/appointments/${id}`, {appointment}, {withCredentials:true})
             .then(response => {
                 console.log(response)
                 if (response.data.status === 'updated'){
+                    this.setState({
+                        notes: [...this.state.notes, response.data.status]
+                    })
                     this.redirect()
+                    
                 } else {
                     this.setState({
                         errors: [...this.state.errors, response.data.errors]
@@ -205,10 +210,24 @@ class AppointmentsForm extends Component{
         )
     }
 
+    handleNotes = () =>{
+        return (
+            <div>
+                <ul>{this.state.notes.map((note) => {
+                    console.log({note})
+                    return <li key="{note}">{note}</li>
+                })}</ul>
+            </div>
+        )
+    }
+
     render(){
         return(
             <div className="appointments_container">
                 <button onClick={this.props.handleEditAppointment}>Close</button>
+                {
+                    this.state.notes ? this.handleNotes() : null
+                }
                 <form className="appointment_form" onSubmit = {this.setAppointment}>
                     <label>Select child:  <select name="child_id" defaultValue={this.state.appointment.child_id} onChange={this.handleChange} className="appointments_form_inputs location_inputs">
                         {this.state.children.map(child => {
@@ -251,7 +270,7 @@ class AppointmentsForm extends Component{
                         <label>Country: <input defaultValue={this.state.location_country} className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_country" type="text" onChange={this.handleChange}/></label><br/>
                         <label>Contact Number: <input defaultValue={this.state.location_contact_number} className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_contact_number" type="text" onChange={this.handleChange}/></label><br/>
                     </label>
-                    <input className="add_appointment_submit" value="Submit" type="submit"/>
+                    <label><input className="appointment_submit" value="Submit" type="submit"/></label>
                 </form>
                 <div>
                     {

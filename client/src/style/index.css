@@ -328,3 +328,9 @@ li.list_titles{
 .child_names{
   margin-top: 5%;
 }
+
+input.appointment_submit{
+  float: none;
+  margin-left: 25%;
+  margin-right: 25%;
+}

@@ -1,7 +1,7 @@
 
 import Appointment from "./Appointment"
 
-const AppointmentsByChild = ({children, editAppointment, handleEditAppointment, handleAppointmentSubmit}) => {
+const AppointmentsByChild = ({children, editAppointment, handleEditAppointment, handleAppointmentSubmit, addAppointmentButton}) => {
     return(
         <div>
             {children.map(child => {
@@ -12,7 +12,7 @@ const AppointmentsByChild = ({children, editAppointment, handleEditAppointment, 
                             <div>
                                 {child.appointments.map(appointment => {
                                     return(
-                                        <Appointment handleEditAppointment={handleEditAppointment} appointment={appointment} editAppointment={editAppointment} handleAppointmentSubmit={handleAppointmentSubmit}/>
+                                        <Appointment addAppointmentButton={addAppointmentButton} handleEditAppointment={handleEditAppointment} appointment={appointment} editAppointment={editAppointment} handleAppointmentSubmit={handleAppointmentSubmit}/>
                                     )
                                 })}
                             </div>

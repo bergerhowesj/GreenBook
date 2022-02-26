@@ -40,7 +40,7 @@ class Appointment extends React.Component{
                     {appointment.location_contact_number}<br/>
                     <button className="editAppointment" onClick={this.handleEditAppointment}>Edit</button>
                 </p>
-                {this.state.editAppointment ? <AppointmentsForm handleAppointmentSubmit={this.props.handleAppointmentSubmit} handleEditAppointment={this.handleEditAppointment} appointment={appointment}/> : null}
+                {this.state.editAppointment ? <AppointmentsForm handleAppointmentSubmit={this.props.handleAppointmentSubmit} handleEditAppointment={this.handleEditAppointment} addAppointmentButton={this.props.addAppointmentButton} appointment={appointment} editing={true}/> : null}
             </div>
         )
     }
