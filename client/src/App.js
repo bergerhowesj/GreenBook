@@ -158,19 +158,19 @@ class App extends Component {
             <Route
               exact path='/children'
               element={
-              <Children user={this.state.user} children={this.state.children} />
+              <Children user={this.state.user} children={this.state.children} addChildButton={this.addChildButton} />
             }
             />
             <Route
             exact path='/add_a_child'
             element={
-              <ChildrenForm user={this.state.user} handleCreateChildren={this.handleCreateChildren} />
+              <ChildrenForm user={this.state.user} handleCreateChildren={this.handleCreateChildren} addChildButton={this.addChildButton} />
             }
             />
             <Route
             exact path='/child'
             element={
-              <Child user={this.state.user} child={this.props.child}/>
+              <Child user={this.state.user} child={this.props.child} addChildButton={this.addChildButton} />
             }
             />
             <Route

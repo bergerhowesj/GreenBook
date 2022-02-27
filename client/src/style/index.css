@@ -144,6 +144,10 @@ label.or{
   padding-bottom: 6%;
 }
 
+.sub_banner{
+  padding-top: 5%;
+}
+
 button{
   background-color: rgb(86, 124, 86);
   color: rgba(255, 228, 196, 0.897);
@@ -289,6 +293,8 @@ input.login_button{
 
 
 /*++++++++++++++++++ Children ++++++++++++++++++++*/
+
+
 
 
 /*++++++++++++++++++ UsefulInformation ++++++++++++++++++++*/
