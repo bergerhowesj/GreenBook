@@ -16,14 +16,13 @@ class Child extends Component{
         this.setState({
             birthRecord: this.state.birthRecord ? false : true
         })
-        this.props.addChildButton()
     }
 
     showBirthForm = () => {
         this.setState({
             birthForm: this.state.birthForm ? false : true
         })
-        this.props.addChildButton()
+        
     }
     render(){
     return(
