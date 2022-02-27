@@ -91,9 +91,9 @@ class Appointments extends Component{
                             {
                                 this.state.sortBy === "Children" 
                                 ?
-                                    <AppointmentsByChild children={this.state.children} handleAppointmentSubmit={this.handleAppointmentSubmit} handleEditAppointment={this.handleEditAppointment} editAppointment={this.state.editAppointment} addAppointmentButton={this.props.addAppointmentButton}/>
+                                    <AppointmentsByChild children={this.state.children} handleAppointmentSubmit={this.handleAppointmentSubmit} handleEditAppointment={this.handleEditAppointment} editAppointment={this.state.editAppointment} addAppointmentButton={this.props.addAppointmentButton} getAppointments={this.getAppointments}/>
                                 :
-                                    <AppointmentsByAppointment children={this.state.children} appointments={this.state.appointments} handleAppointmentSubmit={this.handleAppointmentSubmit} handleEditAppointment={this.handleEditAppointment} editAppointment={this.state.editAppointment} addAppointmentButton={this.props.addAppointmentButton}/>
+                                    <AppointmentsByAppointment children={this.state.children} appointments={this.state.appointments} handleAppointmentSubmit={this.handleAppointmentSubmit} handleEditAppointment={this.handleEditAppointment} editAppointment={this.state.editAppointment} addAppointmentButton={this.props.addAppointmentButton} getAppointments={this.getAppointments}/>
                             }
                         </div>
                     }

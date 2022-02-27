@@ -12,7 +12,7 @@ const AppointmentsByChild = ({children, editAppointment, handleEditAppointment, 
                             <div>
                                 {child.appointments.map(appointment => {
                                     return(
-                                        <Appointment addAppointmentButton={addAppointmentButton} handleEditAppointment={handleEditAppointment} appointment={appointment} editAppointment={editAppointment} handleAppointmentSubmit={handleAppointmentSubmit}/>
+                                        <Appointment addAppointmentButton={addAppointmentButton} handleEditAppointment={handleEditAppointment} appointment={appointment} editAppointment={editAppointment} handleAppointmentSubmit={handleAppointmentSubmit} getAppointments={this.props.getAppointments}/>
                                     )
                                 })}
                             </div>

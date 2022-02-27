@@ -91,6 +91,7 @@ class AppointmentsForm extends Component{
             visit_age: reason === "MCHS Visit" ? visit_age : null,
             child_id: child_id
         }
+
         this.props.editing ?
             axios.put(`http://localhost:3001/api/v1/appointments/${id}`, {appointment}, {withCredentials:true})
             .then(response => {
@@ -99,8 +100,12 @@ class AppointmentsForm extends Component{
                     this.setState({
                         notes: [...this.state.notes, response.data.status]
                     })
-                    this.redirect()
-                    
+                    this.props.getAppointments()
+                    this.props.addAppointmentButton()
+                    this.setState({
+                        notes: [...this.state.notes, response.data.status]
+                    })
+
                 } else {
                     this.setState({
                         errors: [...this.state.errors, response.data.errors]
@@ -225,9 +230,7 @@ class AppointmentsForm extends Component{
         return(
             <div className="appointments_container">
                 <button onClick={this.props.handleEditAppointment}>Close</button>
-                {
-                    this.state.notes ? this.handleNotes() : null
-                }
+                
                 <form className="appointment_form" onSubmit = {this.setAppointment}>
                     <label>Select child:  <select name="child_id" defaultValue={this.state.appointment.child_id} onChange={this.handleChange} className="appointments_form_inputs location_inputs">
                         {this.state.children.map(child => {
@@ -276,7 +279,11 @@ class AppointmentsForm extends Component{
                     {
                         this.state.errors ? this.handleErrors() : null
                     }
+                    {
+                        this.state.notes ? this.handleNotes() : null
+                    }
                 </div>
+                
             </div>
         )
     }
