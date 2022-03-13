@@ -51,6 +51,9 @@ to ensure stability.
 *    Configure Using Gemfile
 *       gem "pg"
 
+#    To create database:
+*       rake db:create
+
 #    To migrate the database: 
 *        rake db:migrate
 
