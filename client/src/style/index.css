@@ -129,7 +129,18 @@ input{
   float: right;
 }
 
+select{
+  width: 42%;
+  font-size: 0.8rem;
+  margin-right: 5%;
+  float: right;
+}
 
+.date_input{
+  width: 41%;
+  margin-right: 5%;
+  float: right;
+}
 
 label{
   width: 40%;

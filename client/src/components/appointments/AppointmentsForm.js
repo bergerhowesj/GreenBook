@@ -233,7 +233,7 @@ class AppointmentsForm extends Component{
                 {this.props.editing ? <button onClick={this.props.handleEditAppointment}>Close</button> : null}
                 
                 <form className="form" onSubmit = {this.setAppointment}>
-                    <label>Select child:  <select name="child_id" defaultValue={this.state.appointment.child_id} onChange={this.handleChange} className="appointments_form_inputs location_inputs">
+                    <label>Select child:  <select name="child_id" defaultValue={this.state.appointment.child_id} onChange={this.handleChange} >
                         {this.state.children.map(child => {
                             return <option key={child.id} value={child.id}>{child.first_name} {child.last_name}</option>}
                         )}
@@ -259,7 +259,7 @@ class AppointmentsForm extends Component{
                     </label>
                     </label>
                     <label>Date and Time
-                        <input name="date_and_time" type="datetime-local" defaultValue={this.state.date_and_time} onChange={this.handleChange} className="appointments_date_input"/>
+                        <input name="date_and_time" type="datetime-local" defaultValue={this.state.date_and_time} onChange={this.handleChange} className="date_input"/>
                     </label>
                     <br/>
                     <br/>
@@ -274,7 +274,7 @@ class AppointmentsForm extends Component{
                         <label>Country: <input defaultValue={this.state.location_country} className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_country" type="text" onChange={this.handleChange}/></label><br/>
                         <label>Contact Number: <input defaultValue={this.state.location_contact_number} className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_contact_number" type="text" onChange={this.handleChange}/></label><br/>
                     </label>
-                    <label><input className="appointment_submit" value="Submit" type="submit"/></label>
+                    <label><input className="submit" value="Submit" type="submit"/></label>
                 </form>
                 <div>
                     {
