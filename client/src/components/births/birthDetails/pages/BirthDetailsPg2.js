@@ -3,7 +3,7 @@
 const BirthDetailsPg2 =({birth})=>{
         return(
             <div>
-                <p>
+                <p className="birth_details">
                 Examined By: {birth.examiner_name}<br/>
                 Delivery Method: {birth.delivery_method ? birth.delivery_method : "Not Supplied"}<br/>
                 Weight: {birth.weight ? birth.weight : "0"}kg<br/>

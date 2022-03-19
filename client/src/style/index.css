@@ -103,13 +103,7 @@ a.links:visited{
 form{
   width: 100%;
   text-align: left;
-  margin-top: 5%;
-}
-
-input{
-  width: 40%;
-  margin-right: 5%;
-  float: right;
+  margin-top: 10%;
 }
 
 input.submit{
@@ -128,6 +122,14 @@ input.submit{
   color: rgba(255, 228, 196, 0.897);
   border-radius: 5px;
 }
+
+input{
+  width: 40%;
+  margin-right: 5%;
+  float: right;
+}
+
+
 
 label{
   width: 40%;
@@ -293,7 +295,9 @@ input.login_button{
 
 
 /*++++++++++++++++++ Children ++++++++++++++++++++*/
-
+.records_child_container{
+  margin-top: 8%;
+}
 
 
 

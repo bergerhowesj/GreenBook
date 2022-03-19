@@ -77,40 +77,39 @@ class ChildrenForm extends Component {
         } = this.state
 
         return(
-            <div className="add_child_container">
-                < Navbar />
-                <Link className="children_links" to="/children">Back</Link>
-                <h3 className="add_child_banner">Add a child</h3>
-                <form className="add_child_form" onSubmit={this.handleSubmit}>
-                    <label>First Name<input
-                        type="text"
-                        name="first_name"
-                        value={first_name||""}
-                        required
-                        onChange={this.handleChange}
-                    /></label>
-                    <label>Middle Name<input
-                        type="text"
-                        name="middle_name"
-                        value={middle_name||""}
-                        required
-                        onChange={this.handleChange}
-                    /></label>
-                    <label>Last Name<input
-                        type="text"
-                        name="last_name"
-                        value={last_name||""}
-                        required
-                        onChange={this.handleChange}
-                    /><br/></label>
-                    <input className="add_child_submit" placeholder="submit" value="Submit" type="submit"/>
-                </form>
-                <div>
-                    {
-                        this.state.errors ? this.handleErrors() : null
-                    }
+            <div className="container">
+                <div class="inner_container">
+                    <h3 className="add_child_banner">Add a child</h3>
+                    <form className="form" onSubmit={this.handleSubmit}>
+                        <label>First Name<input
+                            type="text"
+                            name="first_name"
+                            value={first_name||""}
+                            required
+                            onChange={this.handleChange}
+                        /></label><br/>
+                        <label>Middle Name<input
+                            type="text"
+                            name="middle_name"
+                            value={middle_name||""}
+                            required
+                            onChange={this.handleChange}
+                        /></label><br/>
+                        <label>Last Name<input
+                            type="text"
+                            name="last_name"
+                            value={last_name||""}
+                            required
+                            onChange={this.handleChange}
+                        /><br/></label><br/>
+                        <input className="submit" placeholder="submit" value="Submit" type="submit"/>
+                    </form>
+                    <div>
+                        {
+                            this.state.errors ? this.handleErrors() : null
+                        }
+                    </div>
                 </div>
-                < Footer />
             </div>
         )
 

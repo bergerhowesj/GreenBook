@@ -1,9 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Child from './Child'
-import Navbar from '../../containers/Navbar'
-import Footer from '../../containers/Footer'
+
 
 
 class Children extends React.Component {
