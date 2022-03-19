@@ -228,10 +228,11 @@ class AppointmentsForm extends Component{
 
     render(){
         return(
-            <div className="appointments_container">
-                <button onClick={this.props.handleEditAppointment}>Close</button>
+            <div className="container">
+                <div className="inner_container">
+                {this.props.editing ? <button onClick={this.props.handleEditAppointment}>Close</button> : null}
                 
-                <form className="appointment_form" onSubmit = {this.setAppointment}>
+                <form className="form" onSubmit = {this.setAppointment}>
                     <label>Select child:  <select name="child_id" defaultValue={this.state.appointment.child_id} onChange={this.handleChange} className="appointments_form_inputs location_inputs">
                         {this.state.children.map(child => {
                             return <option key={child.id} value={child.id}>{child.first_name} {child.last_name}</option>}
@@ -283,7 +284,7 @@ class AppointmentsForm extends Component{
                         this.state.notes ? this.handleNotes() : null
                     }
                 </div>
-                
+                </div>
             </div>
         )
     }
