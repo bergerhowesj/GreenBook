@@ -29,6 +29,7 @@ class App extends Component {
       buttons: {
         backButton: false,
         childButton: false,
+        backToChildButton: false,
         appointmentButton: false,
         backToAppointmentButton: false,
         growthButton: false
@@ -96,7 +97,7 @@ class App extends Component {
   }
 
   addChildButton = () =>{
-    this.state.buttons.childButton ? this.setState({buttons:{...this.state.buttons, childButton: false}}) : this.setState({buttons: {...this.state.buttons, backButton: true, childButton: true}})
+    this.state.buttons.childButton ? this.setState({buttons:{...this.state.buttons, childButton: false, backToChildButton: true}}) : this.setState({buttons: {...this.state.buttons, backButton: true, childButton: true, backToChildButton: false}})
   }
 
   addAppointmentButton = () =>{
@@ -121,6 +122,7 @@ class App extends Component {
           addBackButton={this.addBackButton}
           backButton={this.state.buttons.backButton}
           addChildButton={this.addChildButton}
+          backToChildButton = {this.state.buttons.backToChildButton}
           childButton={this.state.buttons.childButton}
           appointmentButton = {this.state.buttons.appointmentButton}
           addAppointmentButton = {this.addAppointmentButton}
