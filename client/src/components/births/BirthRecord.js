@@ -9,6 +9,7 @@ class BirthRecord extends Component{
             errors: [],
             editing: false,
             showDetails: false,
+            deliveryDetailsOpen: false,
             hospitals: [],
             hospitalName: "",
             motherFirstName: "",
@@ -78,7 +79,8 @@ class BirthRecord extends Component{
 
     showDeliveryDetails = () => {
         this.setState({
-            showDetails: this.state.showDetails ? false : true
+            showDetails: this.state.showDetails ? false : true,
+            deliveryDetailsOpen: this.state.deliveryDetailsOpen ? false : true
         })
     }
 
@@ -207,7 +209,7 @@ class BirthRecord extends Component{
                 Father: {this.state.fatherFirstName} {this.state.fatherLastName}<br/>
                 </p>
                 <div className="delivery_details_container">
-                    <button className="delivery_details pointer" id={`delivery_details_${this.props.child.id}`} onClick={this.showDeliveryDetails}>Delivery Details</button>
+                    <button className="delivery_details pointer" id={`delivery_details_${this.props.child.id}`} onClick={this.showDeliveryDetails}>{this.state.deliveryDetailsOpen ? "Close" : "Delivery Details"}</button>
                     {this.state.showDetails ? <BirthDetails child={this.props.child} birth={birth} hospitalName={this.state.hospitalName} hospitals={this.state.hospitals} handleClick={this.handleClick} handleChange={this.handleChange} handleBirthEditSubmit={this.handleBirthEditSubmit}/> : null}
                     <div>
                         {
