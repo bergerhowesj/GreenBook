@@ -230,8 +230,17 @@ class AppointmentsForm extends Component{
         return(
             <div className="container">
                 <div className="inner_container">
-                {this.props.editing ? <button onClick={this.props.handleEditAppointment}>Close</button> : null}
-                
+                {this.props.editing ?
+                    <div>
+                        <h3 className="banner">Edit Appointment</h3>
+                        <button onClick={this.props.handleEditAppointment}>Close</button>
+                    </div>
+                :
+                    <div>
+                        <h3 className="banner">Add a new appointment</h3>
+                    </div>
+                }
+
                 <form className="form" onSubmit = {this.setAppointment}>
                     <label>Select child:  <select name="child_id" defaultValue={this.state.appointment.child_id} onChange={this.handleChange} >
                         {this.state.children.map(child => {

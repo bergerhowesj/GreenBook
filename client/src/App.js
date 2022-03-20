@@ -30,6 +30,7 @@ class App extends Component {
         backButton: false,
         childButton: false,
         appointmentButton: false,
+        backToAppointmentButton: false,
         growthButton: false
       },
       errors: [],
@@ -99,7 +100,7 @@ class App extends Component {
   }
 
   addAppointmentButton = () =>{
-    this.state.buttons.appointmentButton ? this.setState({buttons:{...this.state.buttons, appointmentButton: false}}) : this.setState({buttons: {...this.state.buttons, backButton: true, appointmentButton: true}})
+    this.state.buttons.appointmentButton ? this.setState({buttons:{...this.state.buttons, appointmentButton: false, backToAppointmentButton: true}}) : this.setState({buttons: {...this.state.buttons, backButton: true, appointmentButton: true, backToAppointmentButton: false}})
   }
 
   addGrowthButton = () =>{
@@ -114,31 +115,32 @@ class App extends Component {
     return (
       <div className="app_main">
         <Router>
-        <Navbar 
-          loggedInStatus={this.state.isLoggedIn} 
-          handleLogout={this.handleLogout} 
-          addBackButton={this.addBackButton} 
-          backButton={this.state.buttons.backButton} 
-          addChildButton={this.addChildButton} 
+        <Navbar
+          loggedInStatus={this.state.isLoggedIn}
+          handleLogout={this.handleLogout}
+          addBackButton={this.addBackButton}
+          backButton={this.state.buttons.backButton}
+          addChildButton={this.addChildButton}
           childButton={this.state.buttons.childButton}
           appointmentButton = {this.state.buttons.appointmentButton}
-          growthButton = {this.state.buttons.growthButton}
-          addGrowthButton={this.addGrowthButton}
           addAppointmentButton = {this.addAppointmentButton}
+          growthButton = {this.state.buttons.growthButton}
+          backToAppointmentButton = {this.state.buttons.backToAppointmentButton}
+          addGrowthButton={this.addGrowthButton}
         />
           <Routes>
             <Route
               exact path='/'
               element={
-              <Home 
-                addChildButton={this.addChildButton} 
-                addBackButton={this.addBackButton} 
+              <Home
+                addChildButton={this.addChildButton}
+                addBackButton={this.addBackButton}
                 addAppointmentButton={this.addAppointmentButton}
                 addGrowthButton={this.addGrowthButton}
-                loggedInStatus = {this.state.isLoggedIn} 
-                user={this.state.user} 
-                children = {this.state.user.children} 
-                handleLogout={this.handleLogout} 
+                loggedInStatus = {this.state.isLoggedIn}
+                user={this.state.user}
+                children = {this.state.user.children}
+                handleLogout={this.handleLogout}
                 handleLogin={this.handleLogin}
               />
               }
@@ -206,7 +208,7 @@ class App extends Component {
             <Route
               exact path='/appointments_to_keep'
               element={
-              <Appointments />
+              <Appointments addBackToAppointmentButton={this.addBackToAppointmentButton}/>
               }
             />
             <Route

@@ -342,6 +342,10 @@ li.list_titles{
   text-align: left;
 }
 
+.sort_by_select{
+  width: 60%;
+}
+
 .underline{
   text-decoration: underline;
 }

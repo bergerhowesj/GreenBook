@@ -80,7 +80,7 @@ class Appointments extends Component{
                     <h3 className="banner">Important Appointments</h3>
                     <form >
                     <label>Sort By: 
-                        <select className="appointment_inputs" name="sortBy" onChange={this.handleSort}>
+                        <select className="sort_by_select" name="sortBy" onChange={this.handleSort}>
                             <option value="Appointment">Appointment Date and Time</option>
                             <option value="Children">Children Last Name</option>
                         </select>

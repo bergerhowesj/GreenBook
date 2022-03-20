@@ -79,7 +79,7 @@ class ChildrenForm extends Component {
         return(
             <div className="container">
                 <div class="inner_container">
-                    <h3 className="add_child_banner">Add a child</h3>
+                    <h3 className="banner">Add a child</h3>
                     <form className="form" onSubmit={this.handleSubmit}>
                         <label>First Name<input
                             type="text"
