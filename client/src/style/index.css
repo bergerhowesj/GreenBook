@@ -310,6 +310,12 @@ input.login_button{
   margin-top: 8%;
 }
 
+.baby_details, .delivery_details_container, .birth_details{
+  margin-top: 5%;
+}
+
+
+
 
 
 /*++++++++++++++++++ UsefulInformation ++++++++++++++++++++*/

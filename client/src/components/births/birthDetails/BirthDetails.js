@@ -27,9 +27,8 @@ class BirthDetails extends React.Component{
         const child = this.props.child
         const birth = this.props.birth
         const hospitalName =this.props.hospitalName
-//  export const BirthDetails = ({child, birth, hospitals, hospitalName, handleClick, handleChange, handleBirthEditSubmit}) => {
     return(
-        <div>
+        <div className="birth_details">
             {this.state.page === 1 ? < BirthDetailsPg1 child={child} birth={birth} hospitalName={hospitalName}/> : null}
             {this.state.page === 2 ? < BirthDetailsPg2 child={child} birth={birth} /> : null}
             {this.state.page === 3 ? < BirthDetailsPg3 child={child} birth={birth} /> : null}
