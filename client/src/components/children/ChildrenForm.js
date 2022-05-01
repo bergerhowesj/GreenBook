@@ -77,7 +77,7 @@ class ChildrenForm extends Component {
         } = this.state
 
         return(
-            <div className="container">
+            <div className="container new_child_image">
                 <div className="inner_container">
                     <h3 className="banner">Add a child</h3>
                     <form className="form" onSubmit={this.handleSubmit}>
