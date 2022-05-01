@@ -75,7 +75,7 @@ class Appointments extends Component{
 
     render(){
         return(
-            <div className="container">
+            <div className="container appointments_image">
                 <div className="inner_container">
                     <h3 className="banner">Important Appointments</h3>
                     <form >

@@ -31,6 +31,58 @@ html{
 
 }
 
+/* Images */
+.useful_image{
+  background-image: url("../../../app/assets/images/pexels-yan-krukov-8613089.jpg");
+  background-size: 1550px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.home_image{
+  background-image: url("../../../app/assets/images/pexels-karolina-grabowska-8909759.jpg");
+  background-size: 1550px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.child_image{
+  background-image: url("../../../app/assets/images/pexels-michael-morse-5079883.jpg");
+  background-size: 1550px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.appointments_image{
+  background-image: url("../../../app/assets/images/pexels-kristina-paukshtite-3242264.jpg");
+  background-size: 1550px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.growth_image{
+  background-image: url("../../../app/assets/images/pexels-vlada-karpovich-7356477.jpg");
+  background-size: 1550px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.signup_image{
+  background-image: url("../../../app/assets/images/pexels-pixabay-159579.jpg");
+  background-size: 1550px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.new_appointment_image{
+  background-image: url("../../../app/assets/images/pexels-bich-tran-760710.jpg");
+  background-size: 1550px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+
 body {
   margin: 0;
   top: 0;
@@ -97,7 +149,7 @@ a.links:visited{
   padding-top: 5%;
   height: 60%;
   margin-top: 4%;
-  background-color: rgba(255, 228, 196, 0.8)
+  border-radius: 5px;
 }
 
 form{
@@ -339,6 +391,18 @@ li{
 
 li.list_titles{
   margin-bottom: 5%;
+}
+
+.useful_links{
+  background-color: rgb(86, 124, 86);;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 5%;
+  border: 2px solid rgb(86, 124, 86);;
+  border-radius: 5px;
+  padding: 0.25%;
+  color: rgba(255, 228, 196, 0.8);
 }
 
 /*++++++++++++++++++ Appointments ++++++++++++++++++++*/

@@ -228,7 +228,7 @@ class AppointmentsForm extends Component{
 
     render(){
         return(
-            <div className="container">
+            <div className="container new_appointment_image">
                 <div className="inner_container">
                 {this.props.editing ?
                     <div>

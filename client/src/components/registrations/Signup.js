@@ -96,7 +96,7 @@ class Signup extends Component {
     }
   render() {
     return (
-      <div className='container'>
+      <div className='container signup_image'>
         <div className="inner_container">
         <h3 className="signup_banner">Sign Up</h3>
         <form onSubmit={this.handleSubmit}>

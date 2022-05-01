@@ -5,7 +5,7 @@ import Dashboard from './dashboard/Dashboard'
 class Home extends React.Component{
   render(){
     return (
-      <div className='container'>
+      <div className='container home_image'>
         {this.props.loggedInStatus ?
         <Dashboard 
           addChildButton={this.props.addChildButton} 

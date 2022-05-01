@@ -255,7 +255,7 @@ class GrowthAndHealthRecords extends React.Component{
 
     render(){
         return(
-            <div className="container">
+            <div className="container growth_image">
                 <div>
                     {
                         this.state.errors ? this.handleErrors() : null

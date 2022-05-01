@@ -24,34 +24,43 @@ class UsefulInformation extends React.Component{
 
     render(){
         return(
-            <div className="container">
+            <div className="container useful_image">
                 <div className="inner_container">
                 <h3 className="useful_info_banner">Useful Information</h3>
                 <div className="info_container">
-                    <div className="info_individual_containers">
-                        <h4 className="contactNumbers info_banners pointer" name="Numbers" onClick={this.handleClick}>Contact Numbers {this.state.contactNumbers ? <div><br/><button className="contactNumbers info_banners pointer" onClick={this.handleClick}>Close</button></div> : null}</h4>
+                        <button className="contactNumbers info_banners pointer useful_links" name="Numbers" onClick={this.handleClick}>Contact Numbers</button><br/>
                         {this.state.contactNumbers ?
+                        <div>
+                            <div>
+                                <button className="contactNumbers info_banners pointer" onClick={this.handleClick}>Close</button>
+                            </div>
                             < ContactNumbers />
+                        </div>
                         :
                             null
                         }
-                    </div>
-                    <div className="info_individual_containers">
-                        <h4 className="websites info_banners pointer" onClick={this.handleClick}>Websites {this.state.websites ? <div><br/><button className="websites info_banners pointer" onClick={this.handleClick}>Close</button></div> : null}</h4>
+                        <button className="websites info_banners pointer useful_links" onClick={this.handleClick}>Websites</button><br/>
                         {this.state.websites ?
+                        <div>
+                            <div>
+                                <button className="websites info_banners pointer" onClick={this.handleClick}>Close</button>
+                            </div>
                             < Websites />
+                        </div>
                         :
                             null
                         }
-                    </div>
-                    <div className="info_individual_containers">
-                        <h4 className="mchsClinics info_banners pointer" onClick={this.handleClick}>MCHS Clinics & Hours {this.state.mchsClinics ? <div><br/><button className="mchsClinics info_banners pointer" onClick={this.handleClick}>Close</button></div> : null}</h4>
+                        <button className="mchsClinics info_banners pointer useful_links" onClick={this.handleClick}>MCHS Clinics & Hours</button>
                         {this.state.mchsClinics ?
+                        <div>
+                            <div>
+                                <button className="mchsClinics info_banners pointer" onClick={this.handleClick}>Close</button>
+                            </div>
                             < MCHSClinicsAndHours />
+                        </div>
                         :
                             null
                         }
-                    </div>
                 </div>
                 </div>
             </div>

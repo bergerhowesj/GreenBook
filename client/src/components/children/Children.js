@@ -33,7 +33,7 @@ class Children extends React.Component {
 
     render(){
         return(
-            <div className="container">
+            <div className="container child_image">
                 <div className='inner_container'>
                     <h3 className="banner">Children</h3>
                     {this.state.children.length > 0
