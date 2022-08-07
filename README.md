@@ -30,11 +30,6 @@ to ensure stability.
 #   Ruby version:
 *        3.0.1
 
-#   To run GreenBook locally:
-*        npm install
-*        bundle install
-*        npm start
-
 #   For PostgreSQL database:
 
     Versions 9.3 and up are supported.
@@ -57,6 +52,12 @@ to ensure stability.
 
 #   For trialing, GreenBook can be seeded by running:
 *        rake db:seed
+
+#   To run GreenBook locally:
+*        npm install
+*        bundle install
+*        rails start
+*        npm start
 
 To use GreenBook as a new user, a child must be added followed by the child's
 birth details (these can be edited later).
