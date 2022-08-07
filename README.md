@@ -33,6 +33,7 @@ to ensure stability.
 #   To run GreenBook locally:
 *        npm install
 *        bundle install
+*        npm start
 
 #   For PostgreSQL database:
 
