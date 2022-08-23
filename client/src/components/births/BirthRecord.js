@@ -1,12 +1,15 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-import { BirthDetails } from './BirthDetails'
+import BirthDetails from './birthDetails/BirthDetails'
 
 class BirthRecord extends Component{
     constructor(props){
         super(props)
         this.state = {
             errors: [],
+            editing: false,
+            showDetails: false,
+            deliveryDetailsOpen: false,
             hospitals: [],
             hospitalName: "",
             motherFirstName: "",
@@ -74,14 +77,11 @@ class BirthRecord extends Component{
         }))
     }
 
-    showDeliveryDetails = (event) => {
-        let id = event.target.id
-        let element = document.getElementById(`${id}_content`)
-        if (element.hasAttribute("class", "hidden")){
-            element.removeAttribute("class", "hidden")
-        } else {
-            element.setAttribute("class", "hidden")
-        }
+    showDeliveryDetails = () => {
+        this.setState({
+            showDetails: this.state.showDetails ? false : true,
+            deliveryDetailsOpen: this.state.deliveryDetailsOpen ? false : true
+        })
     }
 
     handleClick = (event) => {
@@ -187,11 +187,6 @@ class BirthRecord extends Component{
     .catch( error => console.log('api errors:', error))
     }
 
-    handleDeliveryDetailsClick = (event) => {
-        event.target.innerHTML = event.target.innerHTML === "Delivery Details" ? "Close" : "Delivery Details"
-        this.showDeliveryDetails(event)
-    }
-
     handleErrors = () =>{
         return (
             <div>
@@ -214,11 +209,8 @@ class BirthRecord extends Component{
                 Father: {this.state.fatherFirstName} {this.state.fatherLastName}<br/>
                 </p>
                 <div className="delivery_details_container">
-                    <button className="delivery_details pointer" id={`delivery_details_${this.props.child.id}`} onClick={this.handleDeliveryDetailsClick}>Delivery Details</button>
-                    <br/>
-                    <div className="delivery_details_content hidden" id={`delivery_details_${this.props.child.id}_content`}>
-                        <BirthDetails child={this.props.child} birth={birth} hospitalName={this.state.hospitalName} hospitals={this.state.hospitals} handleClick={this.handleClick} handleChange={this.handleChange} handleBirthEditSubmit={this.handleBirthEditSubmit}/>
-                    </div>
+                    <button className="delivery_details pointer" id={`delivery_details_${this.props.child.id}`} onClick={this.showDeliveryDetails}>{this.state.deliveryDetailsOpen ? "Close" : "Delivery Details"}</button>
+                    {this.state.showDetails ? <BirthDetails child={this.props.child} birth={birth} hospitalName={this.state.hospitalName} hospitals={this.state.hospitals} handleClick={this.handleClick} handleChange={this.handleChange} handleBirthEditSubmit={this.handleBirthEditSubmit}/> : null}
                     <div>
                         {
                             this.state.errors ? this.handleErrors() : null

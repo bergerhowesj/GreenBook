@@ -1,8 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
-import Navbar from '../../containers/Navbar'
-import Footer from '../../containers/Footer'
 import Immunisations from './immunisations/Immunisations'
 import MCHSVisits from './visits/MCHSVisits'
 import VitaminK from './vitamink/VitaminK'
@@ -258,97 +255,101 @@ class GrowthAndHealthRecords extends React.Component{
 
     render(){
         return(
-            <div className="records_container">
-                <Navbar />
-                <Link className="records_links" to='/'>Back to Dashboard</Link>
+            <div className="container growth_image">
                 <div>
                     {
                         this.state.errors ? this.handleErrors() : null
                     }
                 </div>
-                <h3 className="records_banner">Records</h3>
-                {this.state.children.map(child =>{
-                    const immunisations = child.immunisations
-                    const visits = child.visits
-                    const vitaminK = child.vitamin_ks
-                    const hepB = child.hepatitis_b_vaccine
-                    let last_visit_age, last_visit_date
-                    last_visit_age = visits.length > 0 ? `${visits[visits.length - 1].visit_age} visit -` : "No visits yet"
-                    last_visit_date = visits.length > 0 ? visits[visits.length - 1].date : ""
-                    const year =  visits.length > 0 ? last_visit_date.split("-")[0] : ""
-                    const month = visits.length > 0 ? last_visit_date.split("-")[1] : ""
-                    const day = visits.length > 0 ? last_visit_date.split("-")[2] : ""
-                    last_visit_date = visits.length > 0 ? `${day}-${month}-${year}` : ""
-                    const imms = immunisations.length > 0 ? immunisations.length : "No immunisations yet"
-                    if(child.birth === undefined || child.birth.id === 0){
-                        return(
-                            <div key={child.id}>
-                                <div className="records_child_container" >
-                                    <h4 >{child.first_name} {child.last_name}</h4>
-                                    <p>This child has no birth records, please add birth details under children tab</p>
-                                </div>
-                            </div>
-                        )
-                    } else {
-                    return(
-                        <div className="records_child_container" key={child.id}>
-                            <h4 >{child.first_name} {child.last_name}</h4>
-                            <div className="record_individual_containers">
-                                <h4 className={`${child.id}Visits records_banners pointer`} onClick={this.handleClick}>MCHS Visits<br/><span disabled className={`${child.id}Visits quantities`}>(Last visit: {last_visit_age} {last_visit_date})</span></h4>
-                                <div id={`${child.id}Visits`} className="hidden">
-                                    {visits.map(visit=>{
-                                        return(
-                                            <div key={visit.id}> < MCHSVisits child={child} visit={visit} handleClick={this.handleClick} handleSelectChange={this.handleSelectChange}/></div>
-                                        )
-                                    })}
-                                    <button className={`${child.id}VisitAddNew record_individual_containers pointer`} onClick={this.handlePreClick}>Add new</button><br/>
-                                    <div id={`${child.id}VisitAddNew`} className = "hidden">
-                                        < VisitForm child_id={child.id} handleVisitSubmit = {this.handleVisitSubmit} handleChange={this.handleChange} handleSelectChange={this.handleSelectChange} button="Add"/>
+                <div className="inner_container">
+                    <h3 className="banner">Records</h3>
+                    {!this.state.children.length > 0 ?
+                        <p>There are no records to display<br/>Please begin by adding a child and birth records</p>
+                        :
+                        this.state.children.map(child =>{
+                            const immunisations = child.immunisations
+                            const visits = child.visits
+                            const vitaminK = child.vitamin_ks
+                            const hepB = child.hepatitis_b_vaccine
+                            let last_visit_age, last_visit_date
+                            last_visit_age = visits.length > 0 ? `${visits[visits.length - 1].visit_age} visit -` : "No visits yet"
+                            last_visit_date = visits.length > 0 ? visits[visits.length - 1].date : ""
+                            const year =  visits.length > 0 ? last_visit_date.split("-")[0] : ""
+                            const month = visits.length > 0 ? last_visit_date.split("-")[1] : ""
+                            const day = visits.length > 0 ? last_visit_date.split("-")[2] : ""
+                            last_visit_date = visits.length > 0 ? `${day}-${month}-${year}` : ""
+                            const imms = immunisations.length > 0 ? immunisations.length : "No immunisations yet"
+                            if(child.birth === undefined || child.birth.id === 0){
+                                return(
+                                    <div key={child.id}>
+                                        <div className="records_child_container" >
+                                            <h4 >{child.first_name} {child.last_name}</h4>
+                                            <p>This child has no birth records, please add birth details under children tab</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="record_individual_containers">
-                                <h4 className={`${child.id}VitaminK records_banners pointer`} onClick={this.handleClick}>VitaminK Immunisations<br/><span className={`${child.id}VitaminK quantities`}>({vitaminK.length})</span></h4>
-                                <div id={`${child.id}VitaminK`} className="hidden">
-                                    {vitaminK.map(vitK=>{
-                                        return(
-                                            <div key={vitK.id}> < VitaminK child={child} vitK={vitK} handleClick={this.handleClick}/></div>
-                                        )
-                                    })}
-                                    <button className={`${child.id}vitaminKAddNew record_individual_containerspointer`} onClick={this.handlePreClick}>Add new</button><br/>
-                                    <div id={`${child.id}vitaminKAddNew`} className = "hidden">
-                                        < VitaminKForm child_id={child.id} handleVitaminKSubmit = {this.handleVitaminKSubmit} handleChange={this.handleChange} handleSelectChange={this.handleSelectChange} button="Add"/>
+                                )
+                            } else {
+                                return(
+                                    <div className="records_child_container" key={child.id}>
+                                        <h4 >{child.first_name} {child.last_name}</h4>
+                                        <div className="record_individual_containers">
+                                            <h4 className={`${child.id}Visits records_banners pointer`} onClick={this.handleClick}>MCHS Visits<br/><span disabled className={`${child.id}Visits quantities`}>(Last visit: {last_visit_age} {last_visit_date})</span></h4>
+                                            <div id={`${child.id}Visits`} className="hidden">
+                                                {visits.map(visit=>{
+                                                    return(
+                                                        <div key={visit.id}> < MCHSVisits child={child} visit={visit} handleClick={this.handleClick} handleSelectChange={this.handleSelectChange}/></div>
+                                                    )
+                                                })}
+                                                <button className={`${child.id}VisitAddNew record_individual_containers pointer`} onClick={this.handlePreClick}>Add new</button><br/>
+                                                <div id={`${child.id}VisitAddNew`} className = "hidden">
+                                                    < VisitForm child_id={child.id} handleVisitSubmit = {this.handleVisitSubmit} handleChange={this.handleChange} handleSelectChange={this.handleSelectChange} button="Add"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="record_individual_containers">
+                                            <h4 className={`${child.id}VitaminK records_banners pointer`} onClick={this.handleClick}>VitaminK Immunisations<br/><span className={`${child.id}VitaminK quantities`}>({vitaminK.length})</span></h4>
+                                            <div id={`${child.id}VitaminK`} className="hidden">
+                                                {vitaminK.map(vitK=>{
+                                                    return(
+                                                        <div key={vitK.id}> < VitaminK child={child} vitK={vitK} handleClick={this.handleClick}/></div>
+                                                    )
+                                                })}
+                                                <button className={`${child.id}vitaminKAddNew record_individual_containerspointer`} onClick={this.handlePreClick}>Add new</button><br/>
+                                                <div id={`${child.id}vitaminKAddNew`} className = "hidden">
+                                                    < VitaminKForm child_id={child.id} handleVitaminKSubmit = {this.handleVitaminKSubmit} handleChange={this.handleChange} handleSelectChange={this.handleSelectChange} button="Add"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="record_individual_containers">
+                                            <h4 className={`${child.id}HepB records_banners pointer`} onClick={this.handleClick}>Hepatitis B Immunisation<br/><span className={`${child.id}HepB quantities`}>(1)</span></h4>
+                                            <div id={`${child.id}HepB`} className="hidden">
+                                                < HepatitisBVaccines child={child} hepB={hepB} handleClick={this.handleClick}/>
+                                                <button className={`${child.id}HepBAddNew record_individual_containers pointer`} onClick={this.handlePreClick}>Add new</button><br/>
+                                                <div id={`${child.id}HepBAddNew`} className = "hidden">
+                                                    < HepatitisBForm child_id={child.id} handleHepBSubmit = {this.handleHepBSubmit} handleChange={this.handleChange} handleSelectChange={this.handleSelectChange} button="Add"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="record_individual_containers" >
+                                            <h4 className={`${child.id}immunisation_details records_banners pointer`} onClick={this.handleClick}>Other Immunisations<br/><span className={`${child.id}immunisation_details quantities`}>({imms})</span></h4>
+                                            <div id={`${child.id}immunisation_details`} className="hidden">
+                                                {immunisations.map(imm => {
+                                                    return (
+                                                        <div key={imm.key}>< Immunisations child={child} immunisation={imm} handleClick={this.handleClick}/></div>
+                                                    )
+                                                })}
+                                                <button className={`${child.id}ImmunisationAddNew record_individual_containers pointer`} onClick={this.handlePreClick}>Add new</button><br/>
+                                                <div id={`${child.id}ImmunisationAddNew`} className = "hidden">
+                                                    < ImmunisationForm child_id={child.id} handleVisitSubmit = {this.handleImmunisationSubmit} handleChange={this.handleChange} handleSelectChange={this.handleSelectChange} button="Add"/>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="record_individual_containers">
-                                <h4 className={`${child.id}HepB records_banners pointer`} onClick={this.handleClick}>Hepatitis B Immunisation<br/><span className={`${child.id}HepB quantities`}>(1)</span></h4>
-                                <div id={`${child.id}HepB`} className="hidden">
-                                    < HepatitisBVaccines child={child} hepB={hepB} handleClick={this.handleClick}/>
-                                    <button className={`${child.id}HepBAddNew record_individual_containers pointer`} onClick={this.handlePreClick}>Add new</button><br/>
-                                    <div id={`${child.id}HepBAddNew`} className = "hidden">
-                                        < HepatitisBForm child_id={child.id} handleHepBSubmit = {this.handleHepBSubmit} handleChange={this.handleChange} handleSelectChange={this.handleSelectChange} button="Add"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="record_individual_containers" >
-                                <h4 className={`${child.id}immunisation_details records_banners pointer`} onClick={this.handleClick}>Other Immunisations<br/><span className={`${child.id}immunisation_details quantities`}>({imms})</span></h4>
-                                <div id={`${child.id}immunisation_details`} className="hidden">
-                                    {immunisations.map(imm => {
-                                        return (
-                                            <div key={imm.key}>< Immunisations child={child} immunisation={imm} handleClick={this.handleClick}/></div>
-                                        )
-                                    })}
-                                    <button className={`${child.id}ImmunisationAddNew record_individual_containers pointer`} onClick={this.handlePreClick}>Add new</button><br/>
-                                    <div id={`${child.id}ImmunisationAddNew`} className = "hidden">
-                                        < ImmunisationForm child_id={child.id} handleVisitSubmit = {this.handleImmunisationSubmit} handleChange={this.handleChange} handleSelectChange={this.handleSelectChange} button="Add"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )
-    }})}
-                <Footer />
+                                )
+                            }
+                        })
+                    }
+                </div>
             </div>
         )
     }

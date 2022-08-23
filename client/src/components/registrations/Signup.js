@@ -96,100 +96,100 @@ class Signup extends Component {
     }
   render() {
     return (
-      <div className='signup_container'>
-        <Navbar />
-        <Link id="home" to="/">Back</Link>
+      <div className='container signup_image'>
+        <div className="inner_container">
         <h3 className="signup_banner">Sign Up</h3>
         <form onSubmit={this.handleSubmit}>
-          <label>Username<input
+          <label>Username</label><input
             type="text"
             name="username"
             required
             onChange={this.handleChange}
-          /></label>
-          <label>First Name<input
+          /><br/>
+          <label>First Name</label><input
             type="text"
             name="first_name"
             required
             onChange={this.handleChange}
-          /></label>
-          <label>Last Name<input
+          /><br/>
+          <label>Last Name</label><input
             type="text"
             name="last_name"
             required
             onChange={this.handleChange}
-          /></label>
-          <label>Contact Number<input
+          /><br/>
+          <label>Contact Number</label><input
             type="text"
             name="contact_number"
             required
             onChange={this.handleChange}
-          /></label>
-          <label>Unit Number<input
+          /><br/>
+          <label>Unit Number</label><input
             type="text"
             name="address_unit_number"
             onChange={this.handleChange}
-          /></label>
-          <label>Street Number<input
+          /><br/>
+          <label>Street Number</label><input
             type="text"
             name="address_street_number"
             required
             onChange={this.handleChange}
-          /></label>
-          <label>Street Name<input
+          /><br/>
+          <label>Street Name</label><input
             type="text"
             name="address_street_name"
             required
             onChange={this.handleChange}
-          /></label>
-          <label>Suburb<input
+          /><br/>
+          <label>Suburb</label><input
             type="text"
             name="address_suburb"
             required
             onChange={this.handleChange}
-          /></label>
-          <label>City<input
+          /><br/>
+          <label>City</label><input
             type="text"
             name="address_city"
             required
             onChange={this.handleChange}
-          /></label>
-          <label>State<input
+          /><br/>
+          <label>State</label><input
           type= "text"
           name= "address_state"
           required
           onChange={this.handleChange}
-          /></label>
-          <label>Country<input
+          /><br/>
+          <label>Country</label><input
             type="text"
             name="address_country"
             required
             onChange={this.handleChange}
-          /></label>
-          <label>Email<input
+          /><br/>
+          <label>Email</label><input
             type="text"
             name="email"
             required
             onChange={this.handleChange}
-          /></label>
-          <label>Password<input
+          /><br/>
+          <label>Password</label><input
             type="password"
             name="password"
             required
             onChange={this.handleChange}
-          /></label>
-          <label>Confirm Password<input
+          /><br/>
+          <label>Confirm Password</label><input
             type="password"
             name="password_confirmation"
             required
             onChange={this.handleChange}
-          /><br/></label>
-          <input value="Sign Up" placeholder="submit" type="submit"/>
+          /><br/>
+          <input value="Sign Up" placeholder="submit" type="submit" className="submit"/>
         </form>
         <div>
           {
             this.state.errors ? this.handleErrors() : null
           }
+        </div>
         </div>
       </div>
     );

@@ -1,10 +1,13 @@
+<div class="navbar">
+    <%= link_to 'Back', :back, class: 'google_links' %>
+    <h2 class='logo'>GreenBook</h2>
+</div>
 <div class="home_container">
-    
-    <div class="google_container">
-        <div class="navbar">
-            <h2 class='logo'>GreenBook</h2>
-        </div>
-        <%= link_to 'Back', :back, class: 'google_links' %>
+    <div class="inner_login_container">
         <%= button_to 'Sign in via Google', '/auth/google_oauth2', class: 'google' %>
     </div>
+</div>
+<div class="footer_container">
+    <p class='copywrite'>© 2007 - 2022 Website content and images protected by Australian Copyright Law</p>
+    <p class='acknowledgement'>The team behind Green_Book acknowledge the Boonwurrung People - Traditional Custodians of the land on which we are fortunate to dream, create, live and work, and recognises their continuing connection to land, water and community. We pay our respects to Elders past, present and emerging.</p>
 </div>

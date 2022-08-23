@@ -1,8 +1,6 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import Navbar from '../../containers/Navbar'
-import Footer from '../../containers/Footer'
+
 
 class AppointmentsForm extends Component{
     constructor(props){
@@ -10,21 +8,23 @@ class AppointmentsForm extends Component{
         this.state = {
             children: [],
             errors: [],
+            notes: [],
             options: ["Choose a reason", "MCHS Visit", "GP", "Paediatrician", "Dentist", "Other"],
             appointment: {
-                reason: "",
-                date_and_time: "",
-                location_name: "",
-                location_address_number: "",
-                location_street_name: "",
-                location_suburb: "",
-                location_postcode: 0,
-                location_city: "",
-                location_state: "",
-                location_country: "",
-                location_contact_number: "",
-                visit_age: "",
-                child_id: 1
+                id: this.props.appointment ? this.props.appointment.id : null,
+                reason: this.props.appointment ? this.props.appointment.reason : "",
+                date_and_time: this.props.appointment ? this.props.appointment.date_and_time : "",
+                location_name: this.props.appointment ? this.props.appointment.location_name : "",
+                location_address_number: this.props.appointment ? this.props.appointment.location_address_number : "",
+                location_street_name: this.props.appointment ? this.props.appointment.location_street_name : "",
+                location_suburb: this.props.appointment ? this.props.appointment.location_suburb : "",
+                location_postcode: this.props.appointment ? this.props.appointment.location_postcode : 0,
+                location_city: this.props.appointment ? this.props.appointment.location_city : "",
+                location_state: this.props.appointment ? this.props.appointment.location_state : "",
+                location_country: this.props.appointment ? this.props.appointment.location_country : "",
+                location_contact_number: this.props.appointment ? this.props.appointment.location_contact_number : "",
+                visit_age: this.props.appointment ? this.props.appointment.visit_age : "",
+                child_id: this.props.appointment ? this.props.appointment.child_id : null
             },
             visits: [
                 "Select a visit",
@@ -59,6 +59,7 @@ class AppointmentsForm extends Component{
     setAppointment = (event) => {
         event.preventDefault()
         const {
+            id,
             reason,
             date_and_time,
             location_name,
@@ -75,6 +76,7 @@ class AppointmentsForm extends Component{
         } = this.state.appointment
 
         let appointment = {
+            id: id,
             reason: reason,
             date_and_time: date_and_time,
             location_name: location_name,
@@ -86,20 +88,42 @@ class AppointmentsForm extends Component{
             location_state: location_state,
             location_country: location_country,
             location_contact_number: location_contact_number,
-            visit_age: visit_age,
+            visit_age: reason === "MCHS Visit" ? visit_age : null,
             child_id: child_id
         }
-        axios.post("http://localhost:3001/api/v1/appointments", {appointment}, {withCredentials: true})
-        .then(response => {
-            console.log(response)
-            if (response.data.status === 'created'){
-                this.redirect()
-            } else {
-                this.setState({
-                    errors: [...this.state.errors, response.data.errors]
-                })
-            }
-        })
+
+        this.props.editing ?
+            axios.put(`http://localhost:3001/api/v1/appointments/${id}`, {appointment}, {withCredentials:true})
+            .then(response => {
+                console.log(response)
+                if (response.data.status === 'updated'){
+                    this.setState({
+                        notes: [...this.state.notes, response.data.status]
+                    })
+                    this.props.getAppointments()
+                    this.props.addAppointmentButton()
+                    this.setState({
+                        notes: [...this.state.notes, response.data.status]
+                    })
+
+                } else {
+                    this.setState({
+                        errors: [...this.state.errors, response.data.errors]
+                    })
+                }
+            })
+        :
+            axios.post("http://localhost:3001/api/v1/appointments", {appointment}, {withCredentials: true})
+            .then(response => {
+                console.log(response)
+                if (response.data.status === 'created'){
+                    this.redirect()
+                } else {
+                    this.setState({
+                        errors: [...this.state.errors, response.data.errors]
+                    })
+                }
+            })
     }
 
     redirect = () => {
@@ -191,63 +215,85 @@ class AppointmentsForm extends Component{
         )
     }
 
+    handleNotes = () =>{
+        return (
+            <div>
+                <ul>{this.state.notes.map((note) => {
+                    console.log({note})
+                    return <li key="{note}">{note}</li>
+                })}</ul>
+            </div>
+        )
+    }
+
     render(){
         return(
-            <div className="appointments_container">
-                <Navbar/>
-                <Link className="appointment_links" to="/appointments_to_keep">Back to appointments</Link>
-                <h3 className="appointment_banner">Add a new appointment</h3>
-                <form className="appointment_form" onSubmit = {this.setAppointment}>
-                    <label>Select child:  <select name="child_id" onChange={this.handleChange} className="appointment_inputs">
+            <div className="container new_appointment_image">
+                <div className="inner_container">
+                {this.props.editing ?
+                    <div>
+                        <h3 className="banner">Edit Appointment</h3>
+                        <button onClick={this.props.handleEditAppointment}>Close</button>
+                    </div>
+                :
+                    <div>
+                        <h3 className="banner">Add a new appointment</h3>
+                    </div>
+                }
+
+                <form className="form" onSubmit = {this.setAppointment}>
+                    <label>Select child:  <select name="child_id" defaultValue={this.state.appointment.child_id} onChange={this.handleChange} >
                         {this.state.children.map(child => {
                             return <option key={child.id} value={child.id}>{child.first_name} {child.last_name}</option>}
                         )}
                     </select>
                     <br/>
                     </label>
-                    <label>Reason: <select name="reason" onChange={this.handleReasonChange} className="appointment_inputs">
+                    <label>Reason: <select name="reason" defaultValue={this.state.appointment.reason} onChange={this.handleReasonChange} className="appointment_inputs">
                         {this.state.options.map(option => {
                             return <option key={option} value={option}>{option}</option>}
                         )}
                     </select>
                     <br/>
-                        <label className="mchs_inputs appointment_inputs hidden" >Select which visit:
-                            <select onChange={this.handleVisitChange}>
-                            {this.state.visits.map(visit=>{
-                                return <option key={visit} value={visit}>{visit} Visit</option>
-                            })}
-                            </select>
-                            <br/>
-                        </label>
-                        <label className="hidden" id="other_reason_input">Input another option:
-                            <input type="text" name="other_reason_input"/><button onClick={this.addAnotherReason}>Add</button>
-                        </label>
+                    <label className="mchs_inputs appointment_inputs hidden" >Select which visit:
+                        <select defaultValue={this.state.visit_age} onChange={this.handleVisitChange}>
+                        {this.state.visits.map(visit=>{
+                            return <option key={visit} value={visit}>{visit} Visit</option>
+                        })}
+                        </select>
+                    <br/>
+                    </label>
+                    <label className="hidden" id="other_reason_input">Input another option:
+                        <input type="text" name="other_reason_input"/><button onClick={this.addAnotherReason}>Add</button>
+                    </label>
                     </label>
                     <label>Date and Time
-                        <input name="date_and_time" type="datetime-local" onChange={this.handleChange} className="appointments_date_input"/>
+                        <input name="date_and_time" type="datetime-local" defaultValue={this.state.date_and_time} onChange={this.handleChange} className="date_input"/>
                     </label>
                     <br/>
                     <br/>
                     <label id="location_inputs_label">Location:<br/>
-                        <label>Business Name: <input className="appointments_form_inputs location_inputs" name="location_name" type="text" onChange={this.handleChange}/></label>
-                        <label>Street Number: <input className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_address_number" type="text" onChange={this.handleChange}/></label>
-                        <label>Street Name: <input className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_street_name" type="text" onChange={this.handleChange}/></label>
-                        <label>Suburb: <input className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_suburb" type="text" onChange={this.handleChange}/></label>
-                        <label>Postcode: <input className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_postcode" type="text" onChange={this.handleChange}/></label>
-                        <label>City: <input className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_city" type="text" onChange={this.handleChange}/></label>
-                        <label>State: <input className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_state" type="text" onChange={this.handleChange}/></label>
-                        <label>Country: <input className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_country" type="text" onChange={this.handleChange}/></label>
-                        <label>Contact Number: <input className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_contact_number" type="text" onChange={this.handleChange}/></label>
+                        <label>Business Name: <input defaultValue={this.state.location_name} className="appointments_form_inputs location_inputs" name="location_name" type="text" onChange={this.handleChange}/></label><br/>
+                        <label>Street Number: <input defaultValue={this.state.location_address_number} className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_address_number" type="text" onChange={this.handleChange}/></label><br/>
+                        <label>Street Name: <input defaultValue={this.state.location_street_name} className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_street_name" type="text" onChange={this.handleChange}/></label><br/>
+                        <label>Suburb: <input defaultValue={this.state.location_suburb} className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_suburb" type="text" onChange={this.handleChange}/></label><br/>
+                        <label>Postcode: <input defaultValue={this.state.location_postcode} className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_postcode" type="text" onChange={this.handleChange}/></label><br/>
+                        <label>City: <input defaultValue={this.state.location_city} className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_city" type="text" onChange={this.handleChange}/></label><br/>
+                        <label>State: <input defaultValue={this.state.location_state} className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_state" type="text" onChange={this.handleChange}/></label><br/>
+                        <label>Country: <input defaultValue={this.state.location_country} className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_country" type="text" onChange={this.handleChange}/></label><br/>
+                        <label>Contact Number: <input defaultValue={this.state.location_contact_number} className="appointments_form_inputs appointments_form_inputs location_inputs" name="location_contact_number" type="text" onChange={this.handleChange}/></label><br/>
                     </label>
-                    <br/>
-                    <input className="add_appointment_submit" value="Submit" type="submit"/>
+                    <label><input className="submit" value="Submit" type="submit"/></label>
                 </form>
                 <div>
                     {
                         this.state.errors ? this.handleErrors() : null
                     }
+                    {
+                        this.state.notes ? this.handleNotes() : null
+                    }
                 </div>
-                < Footer/>
+                </div>
             </div>
         )
     }

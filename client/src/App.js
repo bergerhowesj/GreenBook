@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import { createBrowserHistory } from 'history'
+import Navbar from './containers/Navbar'
+import Footer from './containers/Footer'
 import Home from './components/Home'
 import Login from './components/registrations/Login'
 import Signup from './components/registrations/Signup'
@@ -24,6 +26,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      buttons: {
+        backButton: false,
+        childButton: false,
+        backToChildButton: false,
+        appointmentButton: false,
+        backToAppointmentButton: false,
+        growthButton: false
+      },
       errors: [],
       isLoggedIn: false,
       user: {},
@@ -42,6 +52,7 @@ class App extends Component {
     .then(response => {
       console.log(response)
       if (response.data.logged_in) {
+        console.log(response.data.logged_in)
         this.handleLogin(response.data)
         this.redirect("/")
       } else {
@@ -53,7 +64,8 @@ class App extends Component {
   handleLogin = (data) => {
     this.setState({
       isLoggedIn: true,
-      user: data.user
+      user: data.user,
+      navbar: "loggedIn"
     })
   }
 
@@ -80,107 +92,148 @@ class App extends Component {
     HISTORY.push(string)
   }
 
+  addBackButton = () =>{
+    this.state.buttons.backButton ? this.setState({buttons:{backButton: false}}) : this.setState({buttons: {...this.state.buttons, backButton: true}})
+  }
+
+  addChildButton = () =>{
+    this.state.buttons.childButton ? this.setState({buttons:{...this.state.buttons, childButton: false, backToChildButton: true}}) : this.setState({buttons: {...this.state.buttons, backButton: true, childButton: true, backToChildButton: false}})
+  }
+
+  addAppointmentButton = () =>{
+    this.state.buttons.appointmentButton ? this.setState({buttons:{...this.state.buttons, appointmentButton: false, backToAppointmentButton: true}}) : this.setState({buttons: {...this.state.buttons, backButton: true, appointmentButton: true, backToAppointmentButton: false}})
+  }
+
+  addGrowthButton = () =>{
+    this.state.buttons.growthButton ? this.setState({buttons:{...this.state.buttons, growthButton: false}}) : this.setState({buttons: {...this.state.buttons, backButton: true, growthButton: true}})
+  }
+
+  addUsefulInformationButton = () =>{
+    this.state.buttons.usefulInformationButton ? this.setState({buttons:{...this.state.buttons, usefulInformationButton: false}}) : this.setState({buttons: {...this.state.buttons, backButton: true, usefulInformationButton: true}})
+  }
+
   render() {
     return (
-      <div className="app_container">
-        <div className="large_screen_main">
-          <h1 className="large_screen_h1">This application has been optimised for devices with smaller screens such as smartphones.</h1>
-        </div>
-        <div className="app_main">
-          <Router>
-            <Routes>
-              <Route
-                exact path='/'
-                element={
-                <Home loggedInStatus = {this.state.isLoggedIn} user={this.state.user} children = {this.state.user.children} handleLogout={this.handleLogout} handleLogin={this.handleLogin}/>
-                }
+      <div className="app_main">
+        <Router>
+        <Navbar
+          loggedInStatus={this.state.isLoggedIn}
+          handleLogout={this.handleLogout}
+          addBackButton={this.addBackButton}
+          backButton={this.state.buttons.backButton}
+          addChildButton={this.addChildButton}
+          backToChildButton = {this.state.buttons.backToChildButton}
+          childButton={this.state.buttons.childButton}
+          appointmentButton = {this.state.buttons.appointmentButton}
+          addAppointmentButton = {this.addAppointmentButton}
+          growthButton = {this.state.buttons.growthButton}
+          backToAppointmentButton = {this.state.buttons.backToAppointmentButton}
+          addGrowthButton={this.addGrowthButton}
+        />
+          <Routes>
+            <Route
+              exact path='/'
+              element={
+              <Home
+                addChildButton={this.addChildButton}
+                addBackButton={this.addBackButton}
+                addAppointmentButton={this.addAppointmentButton}
+                addGrowthButton={this.addGrowthButton}
+                loggedInStatus = {this.state.isLoggedIn}
+                user={this.state.user}
+                children = {this.state.user.children}
+                handleLogout={this.handleLogout}
+                handleLogin={this.handleLogin}
               />
-                  <Route
-                    exact path='/login'
-                    element={
-                    <Login />
-                  }
-                  />
-                  <Route
-                    exact path='/signup'
-                    element={
-                    <Signup handleLogin={this.handleLogin}/>
-                    }
-                  />
-              <Route
-                exact path='/children'
-                element={
-                <Children user={this.state.user} children={this.state.children}/>
               }
-              />
-                  <Route
-                  exact path='/add_a_child'
-                  element={
-                    <ChildrenForm user={this.state.user} handleCreateChildren={this.handleCreateChildren} />
-                  }
-                  />
-                  <Route
-                  exact path='/child'
-                  element={
-                    <Child user={this.state.user} child={this.props.child}/>
-                  }
-                  />
-                  <Route
-                    exact path='/birth_record'
-                    element={
-                    <BirthRecord/>
-                    }
-                  />
-                  <Route
-                    exact path='/add_a_birth_record'
-                    element={
-                    <BirthsForm/>
-                    }
-                  />
-                  <Route
-                    exact path ='/add_a_hospital'
-                    element={
-                      <HospitalForm />
-                    }
-                  />
-                  <Route
-                    exact path ='/add_a_mother'
-                    element={
-                      <MotherForm />
-                    }
-                  />
-                  <Route
-                    exact path ='/add_a_father'
-                    element={
-                      <FatherForm />
-                    }
-                  />
-              <Route
-                exact path='/appointments_to_keep'
-                element={
-                <Appointments />
-                }
-              />
-                  <Route
-                    exact path='/add_an_appointment'
-                    element={
-                    <AppointmentsForm />
-                    }
-                  />
-              <Route
-                exact path='/records'
-                element={
-                <GrowthAndHealthRecords />
-                }
-              />
-              <Route
-                exact path='/useful_information/*'
-                element={
-                <UsefulInformation />
-                }/>
-            </Routes>
-          </Router>
-        </div>
+            />
+            <Route
+              exact path='/login'
+              element={
+              <Login />
+            }
+            />
+            <Route
+              exact path='/signup'
+              element={
+              <Signup handleLogin={this.handleLogin}/>
+              }
+            />
+            <Route
+              exact path='/children'
+              element={
+              <Children user={this.state.user} children={this.state.children} addChildButton={this.addChildButton} />
+            }
+            />
+            <Route
+            exact path='/add_a_child'
+            element={
+              <ChildrenForm user={this.state.user} handleCreateChildren={this.handleCreateChildren} addChildButton={this.addChildButton} />
+            }
+            />
+            <Route
+            exact path='/child'
+            element={
+              <Child user={this.state.user} child={this.props.child} addChildButton={this.addChildButton} />
+            }
+            />
+            <Route
+              exact path='/birth_record'
+              element={
+              <BirthRecord/>
+              }
+            />
+            <Route
+              exact path='/add_a_birth_record'
+              element={
+              <BirthsForm/>
+              }
+            />
+            <Route
+              exact path ='/add_a_hospital'
+              element={
+                <HospitalForm />
+              }
+            />
+            <Route
+              exact path ='/add_a_mother'
+              element={
+                <MotherForm />
+              }
+            />
+            <Route
+              exact path ='/add_a_father'
+              element={
+                <FatherForm />
+              }
+            />
+            <Route
+              exact path='/appointments_to_keep'
+              element={
+              <Appointments addBackToAppointmentButton={this.addBackToAppointmentButton}/>
+              }
+            />
+            <Route
+              exact path='/add_an_appointment'
+              element={
+              <AppointmentsForm addAppointmentButton={this.addAppointmentButton}/>
+              }
+            />
+            <Route
+              exact path='/records'
+              element={
+              <GrowthAndHealthRecords />
+              }
+            />
+            <Route
+              exact path='/useful_information'
+              element={
+              <UsefulInformation />
+              }
+            />
+          </Routes>
+        </Router>
+        < Footer />
       </div>
     );
   }

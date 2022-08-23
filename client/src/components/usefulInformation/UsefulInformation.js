@@ -1,51 +1,68 @@
 import React from "react";
-import { Link } from 'react-router-dom'
 import { ContactNumbers } from "./contactnumbers/ContactNumbers";
 import { MCHSClinicsAndHours } from "./mchsclinicsandhours/MCHSClinicsAndHours";
 import { Websites } from "./websites/Websites";
-import Navbar from "../../containers/Navbar";
-import Footer from "../../containers/Footer";
+
 
 
 class UsefulInformation extends React.Component{
+    constructor(){
+        super()
+        this.state = {
+            contactNumbers: false,
+            mchsClinics: false,
+            websites: false
+        }
+    }
 
     handleClick = (event) => {
-        const target = event.target.className.split(" ")[0]
-        const element = document.getElementById(`${target}`)
-
-        element.hasAttribute("class", "hidden")
-        ?
-        element.removeAttribute("class", "hidden")
-        :
-        element.setAttribute("class", "hidden")
+        let button = event.target.classList[0]
+        this.setState({
+            [button]: this.state[button] ? false : true
+        })
     }
+
     render(){
         return(
-            <div className="useful_info_container">
-                < Navbar />
-                <Link className="useful_info_links" to="/">Back to Dashboard</Link>
+            <div className="container useful_image">
+                <div className="inner_container">
                 <h3 className="useful_info_banner">Useful Information</h3>
-                <div className="info_cont">
-                    <div className="info_individual_containers">
-                        <h4 className="contactNumbers info_banners pointer" onClick={this.handleClick}>Contact Numbers</h4>
-                        <div id="contactNumbers" className="hidden">
+                <div className="info_container">
+                        <button className="contactNumbers info_banners pointer useful_links" name="Numbers" onClick={this.handleClick}>Contact Numbers</button><br/>
+                        {this.state.contactNumbers ?
+                        <div>
+                            <div>
+                                <button className="contactNumbers info_banners pointer" onClick={this.handleClick}>Close</button>
+                            </div>
                             < ContactNumbers />
                         </div>
-                    </div>
-                    <div className="info_individual_containers">
-                        <h4 className="websites info_banners pointer" onClick={this.handleClick}>Websites</h4>
-                        <div id="websites" className="hidden">
+                        :
+                            null
+                        }
+                        <button className="websites info_banners pointer useful_links" onClick={this.handleClick}>Websites</button><br/>
+                        {this.state.websites ?
+                        <div>
+                            <div>
+                                <button className="websites info_banners pointer" onClick={this.handleClick}>Close</button>
+                            </div>
                             < Websites />
                         </div>
-                    </div>
-                    <div className="info_individual_containers">
-                        <h4 className="MCHSClinics info_banners pointer" onClick={this.handleClick}>MCHS Clinics & Hours</h4>
-                        <div id="MCHSClinics" className="hidden">
+                        :
+                            null
+                        }
+                        <button className="mchsClinics info_banners pointer useful_links" onClick={this.handleClick}>MCHS Clinics & Hours</button>
+                        {this.state.mchsClinics ?
+                        <div>
+                            <div>
+                                <button className="mchsClinics info_banners pointer" onClick={this.handleClick}>Close</button>
+                            </div>
                             < MCHSClinicsAndHours />
                         </div>
-                    </div>
+                        :
+                            null
+                        }
                 </div>
-                <Footer/>
+                </div>
             </div>
         )
     }

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-import Navbar from '../../containers/Navbar';
-import Footer from '../../containers/Footer';
 
 class Login extends Component {
   constructor(props) {
@@ -70,58 +68,51 @@ class Login extends Component {
   render() {
     const {username, email, password} = this.state
     return (
-      <div className="login_container">
-        <Navbar/>
-        <h3 className="login_banner">Log In</h3>
-        <form onSubmit={this.handleSubmit} className="login_form_container">
-          <label>Username <input
-            className="login_inputs"
-            placeholder="username"
-            type="text"
-            name="username"
-            value={username}
-            onChange={this.handleChange}
-            required
-          /></label>
-          <label>Email<input
-            className="login_inputs"
-            placeholder="email"
-            type="text"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-            autoComplete='email'
-            required
-          /></label>
-          <label>Password<input
-            className="login_inputs"
-            placeholder="password"
-            type="password"
-            name="password"
-            autoComplete='current-password'
-            value={password}
-            onChange={this.handleChange}
-            required
-          /><br/></label>
-          <label></label><input type="submit" value="Log In" className="login_button"/>
-          </form>
-          <p>
-            or
-          </p>
-            <form action='http://localhost:3001/login' className="button_to" data-remote="true" method="get">
-              <input type="submit" value="Log in with Google" />
+        <div className="inner_container">
+          <h3 className="login_banner banner">Log In</h3>
+          <form onSubmit={this.handleSubmit} className="login_form_container">
+            <label>Username</label>
+            <input
+              className="login_inputs"
+              placeholder="username"
+              type="text"
+              name="username"
+              value={username}
+              onChange={this.handleChange}
+              required
+            /><br/>
+            <label>Email</label><input
+              className="login_inputs"
+              placeholder="email"
+              type="text"
+              name="email"
+              value={email}
+              onChange={this.handleChange}
+              autoComplete='email'
+              required
+            /><br/>
+            <label>Password</label><input
+              className="login_inputs"
+              placeholder="password"
+              type="password"
+              name="password"
+              autoComplete='current-password'
+              value={password}
+              onChange={this.handleChange}
+              required
+            />
+            <input type="submit" value="Log In" className="login_button submit"/>
             </form>
-          <p>
-            or<br/>
-            <Link className="signup_link" to='/signup'>Sign up</Link>
-          </p>
-          <div>
-            {
-              this.state.errors ? this.handleErrors() : null
-            }
-          </div>
-        <Footer/>
-      </div>
+            <label className="or">or</label><br/>
+              <form action='http://localhost:3001/login' className="signup_link submit" data-remote="true" method="get">
+                <input type="submit" className="submit" value="Log in with Google" />
+              </form>
+            <div>
+              {
+                this.state.errors ? this.handleErrors() : null
+              }
+            </div>
+        </div>
     );
   }
 }
